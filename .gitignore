@@ -1,0 +1,73 @@
+# Theme Ignores
+.svn
+.cvs
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.so
+*.swp
+*.swo
+*.map
+**/*.sw[abcdefghijklmnop]
+.sass-cache
+
+# Packages #
+############
+*.7z
+*.dmg
+*.iso
+*.rar
+*.zip
+*.psd
+*.xd
+.idea
+.idea/tasks.xml
+node_modules
+bower_components
+
+# Logs and databases #
+######################
+*.log
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# large/disallowed file types
+# a CDN should be used for these
+*.hqx
+*.deb
+*.img
+*.msi
+*.msp
+*.msm
+*.mid
+*.midi
+*.kar
+*.mp3
+*.ogg
+*.m4a
+*.ra
+*.3gpp
+*.3gp
+#*.mp4
+*.mpeg
+*.mpg
+*.mov
+*.webm
+*.flv
+*.m4v
+*.mng
+*.asx
+*.asf
+*.wmv
+*.avi

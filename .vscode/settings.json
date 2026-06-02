@@ -1,0 +1,30 @@
+{
+	"liveSassCompile.settings.formats":[
+		// {
+			// "format": "expanded",
+			// "extensionName": ".css",
+			// "savePath": "/assets/dist/css"
+		// },
+		{
+			"format": "compressed",
+			"extensionName": ".min.css",
+			"savePath": "/assets/dist/css"
+		}
+	],
+	"liveSassCompile.settings.excludeList": [
+		"/**/node_modules/**",
+		"/.vscode/**"
+	],
+	"liveSassCompile.settings.generateMap": true,
+	// "liveSassCompile.settings.generateMap": false,
+	"liveSassCompile.settings.autoprefix": [
+		"defaults"
+	],
+
+	"es6-css-minify.jsPostfix": "min",
+	"es6-css-minify.jsMinPath": "/assets/dist/js",
+	"es6-css-minify.minifyOnSave": "exists",
+
+	"liveServer.settings.port": 5500,
+	// "liveServer.settings.file": "/error404.html",
+}
