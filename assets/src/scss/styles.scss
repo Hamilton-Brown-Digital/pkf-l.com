@@ -1,0 +1,14 @@
+/*!
+ * PKF-L Accounting Systems Campaign page (2026)
+ */
+
+// Reset
+@use 'utility/_reset';
+@use 'utility/_accessiblity';
+
+// Base
+@use 'base/components';
+@use 'base/elements';
+
+// Layout
+@use 'layout/content';

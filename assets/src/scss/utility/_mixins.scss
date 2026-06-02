@@ -1,0 +1,143 @@
+@use '../utility/variables' as *;
+
+/* = Mixins
+ * -----------------------------------------------
+ * - Media Queries
+ * - Spacing
+ * - Colours
+ * - Utility functions
+ * - Specific @mixin functions
+ * ----------------------------------------------- */
+
+
+// -- Media Queries
+// --------------------------------
+
+    @mixin responsive_to($breakpoint) {
+        @media only screen and (max-width:calc($breakpoint - 1px)) {
+            @content;
+        }
+    }
+
+    @mixin responsive_from($minbreakpoint:'', $maxbreakpoint:'') {
+        @if ($maxbreakpoint == ''){
+            @media only screen and (min-width: $minbreakpoint) {
+                @content;
+            }
+        } @else{
+            @media only screen and (min-width: $minbreakpoint) and (max-width:calc($maxbreakpoint - 1px)) {
+                @content;
+            }
+        }
+    }
+
+
+// -- Layout
+// --------------------------------
+
+    // Container width
+    @mixin containerWidth(){
+        width:100%;
+        max-width:$container_width;
+        margin:0px auto;
+    }
+
+    // Add section space
+    @mixin addSectionSpace($cssProperty){
+        @if ($cssProperty != ''){
+            @include responsive_to($md_screen){
+                #{$cssProperty}:20px;
+            }
+            @include responsive_from($md_screen){
+                #{$cssProperty}:70px;
+            }
+        }
+    }
+
+    // Remove section space
+    @mixin removeSectionSpace($cssProperty){
+        @if ($cssProperty != ''){
+            @include responsive_to($md_screen){
+                #{$cssProperty}:-20px;
+            }
+            @include responsive_from($md_screen){
+                #{$cssProperty}:-70px;
+            }
+        }
+    }
+
+
+// -- Utility functions
+// --------------------------------
+
+    @mixin animationStandard($animationDuration:''){
+        animation-direction:normal;
+        animation-fill-mode:both;
+        animation-iteration-count:1;
+        @if ($animationDuration == ''){
+            animation-duration:1s;
+        } @else{
+            animation-duration:$animationDuration;
+        }
+    }
+
+    // Hide items but don't use display none so they stay in the dom
+	@mixin hidden{
+		// Ref: https://css-tricks.com/places-its-tempting-to-use-display-none-but-dont/
+		position:absolute;
+		overflow:hidden;
+		clip:rect(0 0 0 0);
+		height:1px; width: 1px;
+		margin:-1px; padding: 0; border: 0;
+	}
+
+    // Truncate amount of lines shown and add a …
+	@mixin truncate($lines:'', $lineHeight:''){
+		display: block;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		display: -webkit-box;
+		-webkit-box-orient:vertical;
+
+        @if $lineHeight == '' {
+		    $lineHeight:1.5em;
+        }
+        line-height:$lineHeight;
+        @if $lines == '' {
+			-webkit-line-clamp:3; /* number of lines to show */
+					line-clamp:3;
+			max-height: 4.5em;
+        }
+        @else{
+			-webkit-line-clamp:$lines; /* number of lines to show */
+					line-clamp:$lines;
+			max-height:calc($lines * $lineHeight);
+        }
+	}
+
+    // Blank space for sizing (%)
+    @mixin blankSpacePerc($percentage:''){
+        width:100%;
+        height:0px;
+
+        display:block;
+        position:relative;
+
+        margin:0px;
+        padding:0px 0px 56.25%;
+        border:0px none;
+        content:'';
+
+        @if $percentage != '' {
+            padding:0px 0px $percentage;
+        }
+    }
+
+
+// -- Styling functions
+// --------------------------------
+
+
+
+// -- Specific @mixin functions
+// --------------------------------

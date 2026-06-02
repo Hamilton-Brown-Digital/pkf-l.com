@@ -1,0 +1,49 @@
+// Theme utilitis
+@use './utility/variables' as *;
+@use './utility/mixins' as *;
+
+
+// Current screen size
+body::before{
+	display:block;
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	z-index:9999;
+
+	padding:10px 20px;
+	background:darkred;
+	color:$white;
+	font-size:12px;
+	font-weight:300;
+
+	@include responsive_to($xxs_screen ){
+		content:'< $xxs_screen';
+	}
+	@include responsive_from($xxs_screen, $xs_screen){
+		content:'$xxs_screen - $xs_screen';
+	}
+	@include responsive_from($xs_screen, $sm_screen){
+		content:'$xs_screen - $sm_screen';
+	}
+	@include responsive_from($sm_screen, $md_screen){
+		content:'$sm_screen - $md_screen';
+	}
+	@include responsive_from($md_screen, $lg_screen){
+		content:'$md_screen - $lg_screen';
+	}
+	@include responsive_from($lg_screen, $xl_screen){
+		content:'$lg_screen - $xl_screen';
+	}
+	@include responsive_from($xl_screen, $xxl_screen){
+		content:'$xl_screen - $xxl_screen';
+	}
+	@include responsive_from($xxl_screen){
+		content:'$xxl_screen';
+	}
+}
+
+// Show anchors
+.anchor{
+	background:darkred !important;
+}
