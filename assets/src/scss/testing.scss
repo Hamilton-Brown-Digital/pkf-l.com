@@ -2,7 +2,6 @@
 @use './utility/variables' as *;
 @use './utility/mixins' as *;
 
-
 // Current screen size
 body::before{
 	display:block;
@@ -13,7 +12,7 @@ body::before{
 
 	padding:10px 20px;
 	background:darkred;
-	color:$white;
+	color:white;
 	font-size:12px;
 	font-weight:300;
 

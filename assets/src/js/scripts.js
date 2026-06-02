@@ -33,10 +33,32 @@
 	jQuery(document).ready(function($){
 
 
-	// ----- No JS
+	// ----- Modal
 	// ---------------------------------------------
 
-		$('html').removeClass('no-js');
+		$('.showModal').click(function(e){
+			e.preventDefault();
+
+		});
+
+		$('.closeModal').click(function(e){
+			e.preventDefault();
+
+		});
+
+
+	// ----- Phase
+	// ---------------------------------------------
+
+		$('.showPhase').click(function(e){
+			e.preventDefault();
+
+		});
+
+		$('.resetPhase').click(function(e){
+			e.preventDefault();
+
+		});
 
 
 	});
