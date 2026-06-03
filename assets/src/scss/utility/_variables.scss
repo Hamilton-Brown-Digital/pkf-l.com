@@ -39,71 +39,22 @@
 // Colours
 // -----------------------
 
+	// PKF Colours
+
+    // Site Colours
 	$transparent:transparent;
 	$white:#FFFFFF;
 	$black:#000000;
+    $grey:#5A5A5A;
+
+    $blue:#0F3780; // PKF Blue
+    $darkblue:#0A2555; // PKF Dark Blue
+    $pink:#A42775;
+    $purple:#390C42;
+    $darkpurple:#390C42;
 
 	$filter_black:brightness(0) saturate(0%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
 	$filter_white:brightness(0) saturate(0%) invert(100%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
-
-	// PKF Colours
-    $black:--wp--preset--color--black;
-    $cyan-bluish-gray:--wp--preset--color--cyan-bluish-gray;
-    $white:--wp--preset--color--white;
-    $pale-pink:--wp--preset--color--pale-pink;
-    $vivid-red:--wp--preset--color--vivid-red;
-    $luminous-vivid-orange:--wp--preset--color--luminous-vivid-orange;
-    $luminous-vivid-amber:--wp--preset--color--luminous-vivid-amber;
-    $light-green-cyan:--wp--preset--color--light-green-cyan;
-    $vivid-green-cyan:--wp--preset--color--vivid-green-cyan;
-    $pale-cyan-blue:--wp--preset--color--pale-cyan-blue;
-    $vivid-cyan-blue:--wp--preset--color--vivid-cyan-blue;
-    $vivid-purple:--wp--preset--color--vivid-purple;
-    $base:--wp--preset--color--base;
-    $contrast:--wp--preset--color--contrast;
-    $pkfblue:--wp--preset--color--pkfblue;
-    $pkfdarkblue:--wp--preset--color--pkfdarkblue;
-    $neutralpebble:--wp--preset--color--neutralpebble;
-    $neutralpebbledark:--wp--preset--color--neutralpebbledark;
-    $neutralstone:--wp--preset--color--neutralstone;
-    $neutralstonedark:--wp--preset--color--neutralstonedark;
-    $neutralcloud:--wp--preset--color--neutralcloud;
-    $neutralclouddark:--wp--preset--color--neutralclouddark;
-    $skyblue:--wp--preset--color--skyblue;
-    $skybluedark:--wp--preset--color--skybluedark;
-    $limegreen:--wp--preset--color--limegreen;
-    $limegreendark:--wp--preset--color--limegreendark;
-    $grassgreen:--wp--preset--color--grassgreen;
-    $grassgreendark:--wp--preset--color--grassgreendark;
-    $mossgreen:--wp--preset--color--mossgreen;
-    $mossgreendark:--wp--preset--color--mossgreendark;
-    $amethystpurple:--wp--preset--color--amethystpurple;
-    $amethystpurpledark:--wp--preset--color--amethystpurpledark;
-    $mostlymagenta:--wp--preset--color--mostlymagenta;
-    $mostlymagentadark:--wp--preset--color--mostlymagentadark;
-    $redapple:--wp--preset--color--redapple;
-    $redappledark:--wp--preset--color--redappledark;
-    $sunsetorange:--wp--preset--color--sunsetorange;
-    $sunsetorangedark:--wp--preset--color--sunsetorangedark;
-    $sunyellow:--wp--preset--color--sunyellow;
-    $sunyellowdark:--wp--preset--color--sunyellowdark;
-    $transparent:--wp--preset--color--transparent;
-
-	// Gradient
-    $gradient--vivid-cyan-blue-to-vivid-purple:--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple;
-    $gradient--light-green-cyan-to-vivid-green-cyan:--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan;
-    $gradient--luminous-vivid-amber-to-luminous-vivid-orange:--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange;
-    $gradient--luminous-vivid-orange-to-vivid-red:--wp--preset--gradient--luminous-vivid-orange-to-vivid-red;
-    $gradient--very-light-gray-to-cyan-bluish-gray:--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray;
-    $gradient--cool-to-warm-spectrum:--wp--preset--gradient--cool-to-warm-spectrum;
-    $gradient--blush-light-purple:--wp--preset--gradient--blush-light-purple;
-    $gradient--blush-bordeaux:--wp--preset--gradient--blush-bordeaux;
-    $gradient--luminous-dusk:--wp--preset--gradient--luminous-dusk;
-    $gradient--pale-ocean:--wp--preset--gradient--pale-ocean;
-    $gradient--electric-grass:--wp--preset--gradient--electric-grass;
-    $gradient--midnight:--wp--preset--gradient--midnight;
-    $gradient--primary-white:--wp--preset--gradient--primary-white;
-    $gradient--white-primary:--wp--preset--gradient--white-primary;
 
 	// Colour @functions
     @function linearGradient($gradientAngle:'', $colorStart:'', $colorEnd:''){
@@ -153,6 +104,6 @@
 	$fontweightBold:700;
 
 	// Font Size
-	$fontsizeSmall:0.8rem;
-	$fontsizeNormal:1.0rem;
-	$fontsizeLarge:1.27rem;
+	$fontsizeSmall:0.8333333rem; // 15px
+	$fontsizeNormal:1.0rem; // 18px
+	$fontsizeLarge:1.333333rem; // 24px

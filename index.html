@@ -21,13 +21,15 @@
 			<div id="customLandingPage_AccountingSystemsCampaign">
 
 				<nav class="customLandingPage_navigation">
-					<ul>
-						<li><a href="#who-is-it-for">Who is it for</a></li>
-						<li><a href="#decision-roadmap">Decision roadmap</a></li>
-						<li><a href="#overview">Overview</a></li>
-						<li><a href="#How-pkf-can-help">How PKF can help</a></li>
-						<li><a href="#contact-us">Contact us</a></li>
-					</ul>
+					<div class="container">
+						<ul>
+							<li><a href="#who-is-it-for">Who is it for</a></li>
+							<li><a href="#decision-roadmap">Decision roadmap</a></li>
+							<li><a href="#overview">Overview</a></li>
+							<li><a href="#How-pkf-can-help">How PKF can help</a></li>
+							<li><a href="#contact-us">Contact us</a></li>
+						</ul>
+					</div>
 				</nav>
 
 				<div class="customLandingPage_header">
@@ -83,7 +85,7 @@
 						<a id="phases" class="anchor"></a>
 
 						<!-- Phase 1 -->
-						<div class="phase" id="PhaseOne">
+						<div class="phase phaseElem" id="PhaseOne">
 							<div class="container">
 								<h2>Start-up</h2>
 								<h3>At a glance</h3>
@@ -121,7 +123,7 @@
 						</div>
 
 						<!-- Phase 2 -->
-						<div class="phase" id="PhaseTwo">
+						<div class="phase phaseElem" id="PhaseTwo">
 							<div class="container">
 								<h2>Scaling</h2>
 								<h3>At a glance</h3>
@@ -171,7 +173,7 @@
 						</div>
 
 						<!-- Phase 3 -->
-						<div class="phase" id="PhaseThree">
+						<div class="phase phaseElem" id="PhaseThree">
 							<div class="container">
 								<h2>Enterprise Resource Planning</h2>
 								<h3>At a glance</h3>
@@ -223,7 +225,7 @@
 							</div>
 						</div>
 
-						<div class="contact">
+						<div class="contact phaseContact">
 							<div class="container">
 								<h2>Get in touch today</h2>
 								<p>Drop us a message and one of the team will get back to you. You can also choose a different business phase to explore all three stages of the journey.</p>
@@ -426,6 +428,10 @@
 						</div>
 					</section>
 
+				</div>
+
+				<div class="customLandingPage_footer">
+
 					<!-- Contact us -->
 					<section class="section--ContactUs">
 						<a id="contact-us" class="anchor"></a>
@@ -438,7 +444,8 @@
 
 				</div>
 
-				<div class="customLandingPage_modal">
+				<div class="customLandingPage_modal customModal">
+					<button class="closeModal">Close</button>
 					<h2>Get in touch today</h2>
 					<p>Drop us a message and one of the team will get back to you</p>
 					<p><mark>GRAVITY FORM</mark></p>

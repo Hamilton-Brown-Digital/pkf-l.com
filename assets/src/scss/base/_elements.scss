@@ -23,7 +23,7 @@
         position:relative;
         z-index:0;
 
-        color:inherit;
+        color:$grey;
         font-family:inherit; // Inter, sans-serif
         font-size:1rem; // clamp(14px, 0.875rem + ((1vw - 3.2px) * 0.37), 18px)
         font-weight:inherit;
@@ -51,8 +51,8 @@
     h4,
     h5,
     h6{
-        color:inherit;
-        font-family:inherit;
+        color:$blue;
+        font-family:$fontfamilyPKF;
         font-size:inherit;
         font-style:inherit;
         font-weight:inherit;
@@ -90,15 +90,19 @@
     }
 
     h1{
+        font-size:6.59011111111em;
     }
 
     h2{
+        font-size:4em;
     }
     h3{
+        font-size:2.444444em;
     }
     h4,
     h5,
     h6{
+        font-size:1.7777777778em;
     }
 
 
@@ -109,7 +113,7 @@
         color:inherit;
         font-family:inherit;
         font-size:inherit;
-        font-style:normal;
+        font-style:1em;
         font-weight:inherit;
         font-weight:inherit;
         line-height:inherit;
@@ -280,90 +284,7 @@
     }
 
 
-// -- Blockquote ----------
-
-    blockquote{
-        background:$transparent;
-
-        width:100%;
-        height:auto;
-
-        display:block;
-        position:relative;
-
-        font-family:inherit;
-        font-size:$fontsizeLarge;
-        font-weight:normal;
-
-        margin:2rem 0px;
-        padding:5rem 0px 0px;
-        border:0px none;
-
-        quotes: "\201C""\201D""\2018""\2019";
-
-        &::before {
-            width:auto;
-            height:auto;
-
-            display:inline-block;
-            position:absolute;
-            top:4rem;
-            left:-0.55rem;
-
-            color:inherit;
-            font-size:11rem;
-            line-height:1rem;
-
-            content:'\201C';
-        }
-        p {
-            display:inline-block;
-
-
-            font-family:inherit;
-            font-size:inherit;
-            font-weight:inherit;
-
-            margin:0.5rem 0px;
-
-            &:first-child{
-                margin-top:0px;
-            }
-
-            cite{
-                margin-top:1.5rem;
-            }
-
-            & + cite{
-                margin-top:1rem;
-            }
-        }
-
-        *{
-            &:last-child{
-                margin-bottom:0px;
-            }
-        }
-
-        cite{
-            display:block;
-            position:relative;
-
-            font-family:inherit;
-            font-weight:bold;
-            font-size:1rem;
-            font-style:normal;
-            line-height:1.0;
-            text-transform:uppercase;
-        }
-    }
-
-
 // -- Images ----------
-
-    figure{
-        margin:1.25rem 0px;
-    }
 
     img{
         width:auto;
@@ -372,32 +293,6 @@
 
         display:block;
         position:relative;
-    }
-
-    caption,
-    figcaption{
-        width:100%;
-        height:auto;
-
-        display:block;
-        position:relative;
-
-        color:inherit;
-        font-size:$fontsizeSmall;
-        font-weight:bold;
-
-        margin:0.25rem auto 0px;
-        padding:0px;
-        border:0px none;
-
-        a{
-            text-decoration:underline !important;
-
-            &::before,
-            &::after{
-                display:none !important;
-            }
-        }
     }
 
 
@@ -418,7 +313,6 @@
             color:inherit;
         }
     }
-
 
 
 // -- Buttons ----------

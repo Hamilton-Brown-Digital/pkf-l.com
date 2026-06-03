@@ -38,12 +38,13 @@
 
 		$('.showModal').click(function(e){
 			e.preventDefault();
+			$('.customModal').addClass('jsModalActive');
 
 		});
 
 		$('.closeModal').click(function(e){
 			e.preventDefault();
-
+			$('.customModal').removeClass('jsModalActive');
 		});
 
 
@@ -52,12 +53,16 @@
 
 		$('.showPhase').click(function(e){
 			e.preventDefault();
+			phaseID = $(this).attr('data-phase-id');
+			$('#' + phaseID).addClass('jsPhaseActive');
+			$('.phaseContact').addClass('jsPhaseActive');
 
 		});
 
 		$('.resetPhase').click(function(e){
 			e.preventDefault();
-
+			$('.phaseElem').removeClass('jsPhaseActive');
+			$('.phaseContact').removeClass('jsPhaseActive');
 		});
 
 

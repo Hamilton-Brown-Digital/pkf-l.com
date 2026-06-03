@@ -1,0 +1,23 @@
+@use '../utility/variables' as *;
+@use '../utility/mixins' as *;
+
+/* -- Overwrites
+--------------------------------- */
+
+    // Add min-width for the page
+    html,
+    body{
+        min-width:320px;
+    }
+
+    // Reset the wp-block-group width, height, margin, and padding
+    main.wp-block-group{
+        width:100% !important;
+        max-width:unset !important;
+        min-width:unset !important;
+        height:auto !important;
+        max-height:unset !important;
+        min-height:unset !important;
+        margin:0px !important;
+        padding:0px !important;
+    }

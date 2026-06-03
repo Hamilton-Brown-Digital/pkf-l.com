@@ -4,6 +4,202 @@
 /* -- Content
 --------------------------------- */
 
-
 #customLandingPage_AccountingSystemsCampaign{
+
+    .container{
+        width:100%;
+        max-width:1280px;
+        height:auto;
+
+        display:block;
+        position:relative;
+        z-index:10;
+
+        margin:0px auto;
+        padding:0px 20px;
+        @include responsive_from(783px){
+            padding:0px 80px;
+        }
+        border:0px none;
+    }
+
+    // Navigation
+    .customLandingPage_navigation{
+        background: linear-gradient(212deg, rgba(255, 255, 255, 0.30) -149.44%, rgba(153, 153, 153, 0.00) 75.37%);
+
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:sticky;
+        top:0px;
+        left:0px;
+        z-index:20;
+
+        margin:0px;
+        padding:0px;
+        border:0px none;
+
+        backdrop-filter:blur(5px);
+
+        .container{
+            max-width:unset;
+
+            display:grid;
+
+            align-items:center;
+            justify-items:end;
+        }
+
+        ul{
+            width:auto;
+            height:auto;
+
+            display:flex;
+            position:relative;
+
+            flex-direction:row;
+            flex-wrap:nowrap;
+
+            margin:0px;
+            padding:0px;
+            border:0px none;
+
+            li{
+                width:100%;
+                height:auto;
+
+                display:block;
+                position:relative;
+
+                margin:0px;
+                padding:0px;
+                border:0px none;
+
+                a{
+                    background:$darkblue;
+                    display:block;
+                }
+            }
+        }
+    }
+
+    // Header
+    .customLandingPage_header{
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:relative;
+        top:0px;
+        left:0px;
+        z-index:0;
+
+        margin:0px;
+        padding:0px;
+        border:0px none;
+
+        .hero{
+
+        }
+        .text{
+
+        }
+    }
+
+    // Content
+    .customLandingPage_content{
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:relative;
+        top:0px;
+        left:0px;
+        z-index:0;
+
+        margin:0px;
+        padding:0px;
+        border:0px none;
+
+        .section--WhoIsItFor{
+        }
+
+        .section--Phases{
+            .phase{
+                background:rgba(red, 0.1);
+                display:none;
+
+                &.jsPhaseActive{
+                    display:block;
+                }
+            }
+            .contact{
+                background:rgba(green, 0.1);
+                display:none;
+
+                &.jsPhaseActive{
+                    display:block;
+                }
+            }
+        }
+
+        .section--DecisionRoadmap{
+        }
+
+        .section--Overview{
+        }
+
+        .section--HowPKFCanHelp{
+        }
+    }
+
+    // Footer
+    .customLandingPage_footer{
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:relative;
+        top:0px;
+        left:0px;
+        z-index:0;
+
+        margin:0px;
+        padding:0px;
+        border:0px none;
+    }
+
+    // Modal
+    .customLandingPage_modal{
+        background:rgba($black, 0.9);
+
+        width:100vw;
+        min-width:320px;
+        height:100vh;
+        min-height:320px;
+
+        display:none;
+        position:fixed;
+        top:0px;
+        left:0px;
+        bottom:0px;
+        right:0px;
+        z-index:9999;
+
+        align-content:center;
+        align-items:center;
+        justify-content:center;
+        justify-items:center;
+
+        margin:0px;
+        padding:0px;
+        border:0px none;
+
+        backdrop-filter:blur(0.5em);
+
+        &.jsModalActive{
+            display:grid;
+        }
+    }
 }
