@@ -15,14 +15,17 @@
     $xxs_screen:420px;
     $xs_screen:520px;
 	$sm_screen:750px;
-	$md_screen:1050px;
-    $lg_screen:1280px;
-    $xl_screen:1600px;
+	$md_screen:992px;
+    $lg_screen:1050px;
+    $xl_screen:1280px;
     $xxl_screen:1920px;
-	$container_width:1620px;
+
+	$breakpoint:783px;
+	$menu_breakpoint:880px;
+	$container_width:1280px;
 
 	// Spacing
-	$gutterGap:25px;
+	$gutterGap:40px;
 	$sectionGap:100px;
 
 	// Transitions
@@ -46,6 +49,7 @@
 	$white:#FFFFFF;
 	$black:#000000;
     $grey:#5A5A5A;
+	$lightgrey:#FAFAFA;
 
     $blue:#0F3780; // PKF Blue
     $darkblue:#0A2555; // PKF Dark Blue
@@ -107,3 +111,5 @@
 	$fontsizeSmall:0.8333333rem; // 15px
 	$fontsizeNormal:1.0rem; // 18px
 	$fontsizeLarge:1.333333rem; // 24px
+	$fontsizeVeryLarge:1.666667rem; // 30px
+	$fontsizeExtraLarge:2.444444rem; // 44px

@@ -1,3 +1,4 @@
+@use "sass:list";
 @use '../utility/variables' as *;
 
 /* = Mixins
@@ -39,17 +40,26 @@
     @mixin containerWidth(){
         width:100%;
         max-width:$container_width;
+
         margin:0px auto;
+    }
+
+    // Sidegutter
+    @mixin sideGutter(){
+        padding:0px 20px;
+        @include responsive_from($breakpoint){
+            padding:0px 80px;
+        }
     }
 
     // Add section space
     @mixin addSectionSpace($cssProperty){
         @if ($cssProperty != ''){
             @include responsive_to($md_screen){
-                #{$cssProperty}:20px;
+                #{$cssProperty}:50px;
             }
             @include responsive_from($md_screen){
-                #{$cssProperty}:70px;
+                #{$cssProperty}:100px;
             }
         }
     }
@@ -58,10 +68,10 @@
     @mixin removeSectionSpace($cssProperty){
         @if ($cssProperty != ''){
             @include responsive_to($md_screen){
-                #{$cssProperty}:-20px;
+                #{$cssProperty}:-50px;
             }
             @include responsive_from($md_screen){
-                #{$cssProperty}:-70px;
+                #{$cssProperty}:-100px;
             }
         }
     }
@@ -79,6 +89,15 @@
         } @else{
             animation-duration:$animationDuration;
         }
+    }
+
+    // Apply the same transitions to multiple elements
+    @mixin transition($speed, $easing, $properties...) {
+        $transitions: ();
+        @each $prop in $properties {
+            $transitions: list.append($transitions, #{$prop} $speed $easing, $separator: comma);
+        }
+        transition: $transitions;
     }
 
     // Hide items but don't use display none so they stay in the dom
@@ -141,3 +160,45 @@
 
 // -- Specific @mixin functions
 // --------------------------------
+
+    @mixin btn($background:'', $color:'', $mode:''){
+        @if($background==''){
+            $background:$darkblue;
+        }
+        @if($color==''){
+            $color:$white;
+        }
+
+        background-color:$background;
+
+        width:auto;
+        height:auto;
+
+        display:inline-block;
+        position:relative;
+
+        color:$color;
+        font-size:inherit;
+        line-height:1.0;
+        text-align:center;
+        white-space:nowrap;
+
+        margin:0px;
+        padding:0.666667em 1.666667em;
+        border:0px none;
+
+        border-radius:1.5em;
+
+        @include transition($transitionSpeed, $transitionEaseInOut, background-color, color);
+
+        &:hover{
+            @if($mode=='invert'){
+                background-color:$color;
+                color:$background;
+            }
+            @else{
+                background:$blue;
+                color:$white;
+            }
+        }
+    }

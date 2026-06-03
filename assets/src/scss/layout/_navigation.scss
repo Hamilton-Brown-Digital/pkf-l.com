@@ -1,0 +1,281 @@
+@use '../utility/variables' as *;
+@use '../utility/mixins' as *;
+@use '../utility/animations' as *;
+
+/* -- Navigation
+--------------------------------- */
+
+#customLandingPage_AccountingSystemsCampaign{
+
+    .customLandingPage_navigation{
+        grid-column:1;
+        grid-row:1;
+        align-self:start;
+        justify-self:stretch;
+
+        width:100%;
+        height:auto;
+
+        display:block;
+        position:sticky;
+        top:0px;
+        @include responsive_to($menu_breakpoint){
+            top:80px;
+        }
+        left:0px;
+        z-index:20;
+
+        margin:0px;
+        padding:2rem 0px;
+        border:0px none;
+
+        overflow:visible;
+
+        // Background
+        .blur{
+            background:linear-gradient(
+                212deg,
+                rgba(255, 255, 255, 0.30) -149.44%,
+                rgba(153, 153, 153, 0.00) 75.37%
+            );
+
+            width:100%;
+            height:150%;
+
+            display:block;
+            position:absolute;
+            top:0px;
+            left:0px;
+            z-index:0;
+
+            margin:0px;
+            padding:0px;
+            border:0px none;
+
+            filter:blur(5px);
+            backdrop-filter:blur(5px);
+
+            @include transition($transitionSpeed, $transitionEaseIn, height);
+
+            content:'';
+
+            mask:linear-gradient(
+                to bottom,
+                rgba($black, 1.0) 50%,
+                rgba($black, 0.738) 59.5%,
+                rgba($black, 0.541) 67%,
+                rgba($black, 0.382) 73.5%,
+                rgba($black, 0.278) 78.25%,
+                rgba($black, 0.194) 82.5%,
+                rgba($black, 0.126) 86.5%,
+                rgba($black, 0.075) 90.1%,
+                rgba($black, 0.042) 93.05%,
+                rgba($black, 0.021) 95.5%,
+                rgba($black, 0.008) 97.6%,
+                rgba($black, 0.002) 99.1%,
+                rgba($black, 0) 100%
+            );
+
+            &::after{
+                background:linear-gradient(
+                    73deg,
+                    #C6C6C6 9.62%,
+                    #C7BEC0 39.42%,
+                    #F3D5E2 61.06%,
+                    #B2BED7 81.73%,
+                    #DEDFE7 100%
+                );
+
+                width:100%;
+                height:100%;
+
+                display:block;
+                position:absolute;
+                top:0px;
+                left:0px;
+
+                opacity:0;
+
+                @include transition($transitionSpeed, $transitionEaseIn, opacity);
+
+                content:'';
+            }
+
+        }
+
+        // Content
+        .container{
+            display:grid;
+            position:relative;
+            z-index:20;
+
+            align-items:center;
+            justify-items:end;
+            @include responsive_from($menu_breakpoint){
+                justify-items:center;
+            }
+            @include responsive_from($lg_screen){
+                justify-items:end;
+            }
+
+            @include sideGutter;
+
+            button{
+                @include btn();
+
+                display:block;
+                @include responsive_from($menu_breakpoint){
+                    display:none;
+                }
+
+                padding-left:2.5em;
+
+                &::before,
+                &::after{
+                    background:$white;
+
+                    width:1em;
+                    height:0.1em;
+
+                    display:block;
+                    position:absolute;
+                    top:50%;
+                    left:1em;
+
+                    margin:0px;
+                    padding:0px;
+                    border:0px none;
+
+                    transform:translateY(-50%);
+
+                    @include transition($transitionSpeed, $transitionEaseInOut, width, top, transform);
+
+                    content:'';
+                }
+
+                &::before{
+                    top:42%;
+                }
+                &::after{
+                    top:58%;
+                }
+            }
+
+            ul{
+                width:auto;
+                height:auto;
+
+                display:none;
+                @include responsive_from($menu_breakpoint){
+                    display:flex;
+                }
+                position:relative;
+
+                flex-direction:column;
+                align-items:end;
+                @include responsive_from($menu_breakpoint){
+                    flex-direction:row;
+                    flex-wrap:wrap;
+                    align-items:center;
+                }
+                gap:1em;
+
+                font-size:$fontsizeNormal;
+                @include responsive_from($menu_breakpoint){
+                    font-size:$fontsizeSmall;
+                }
+                @include responsive_from($xl_screen){
+                    font-size:$fontsizeNormal;
+                }
+
+                margin:1em 0px 0px;
+                @include responsive_from($menu_breakpoint){
+                    margin:0px;
+                }
+                padding:0px;
+                border:0px none;
+
+                li{
+                    width:auto;
+                    height:auto;
+
+                    display:block;
+                    position:relative;
+
+                    margin:0px;
+                    padding:0px;
+                    border:0px none;
+
+                    a{
+                        @include btn($white, $darkblue);
+
+                        &.jsSectionActive{
+                            @include btn($darkblue, $white);
+                        }
+                    }
+
+                    &:nth-child(1){
+                        display:none;
+                    }
+                }
+            }
+        }
+
+        @include responsive_to($menu_breakpoint){
+            &.jsMenuActive{
+
+                .button{
+                    &::before{
+                        top:50%;
+                        transform:translateY(-50%) rotate(135deg);
+                    }
+                    &::after{
+                        top:50%;
+                        transform:translateY(-50%) rotate(225deg);
+                    }
+                }
+
+                ul{
+                    grid-row:2;
+                    display:flex;
+                    position:absolute;
+                    top:0px;
+                    z-index:20;
+
+                    @include sideGutter;
+
+                    li{
+                        transform:translateY(1rem);
+                        opacity:0;
+                        animation: cssAnimateFadeInMoveUp calc($transitionSpeed * 2) $transitionEaseOut forwards;
+
+                        @for $i from 1 through 10 {
+                            &:nth-child(#{$i}n+1) {
+                                animation-delay: #{$i * calc($transitionSpeed / 2)};
+                            }
+                        }
+                    }
+                }
+
+                .blur{
+                    height:600px;
+
+                    &::after{
+                        opacity:0.65;
+                    }
+                }
+
+                .hide{
+                    width:100vw;
+                    height:100vh;
+
+                    display:block;
+                    position:absolute;
+                    top:0px;
+                    left:0px;
+                    z-index:10;
+                }
+            }
+        }
+    }
+}

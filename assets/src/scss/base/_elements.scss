@@ -67,7 +67,7 @@
 
         & b,
         & strong{
-            font-weight:inherit;
+            font-weight:$fontweightBold;
         }
 
         & em,
@@ -85,16 +85,19 @@
         & i b,
         & i strong{
             font-style:italic;
-            font-weight:inherit;
+            font-weight:$fontweightBold;
         }
     }
 
     h1{
-        font-size:6.59011111111em;
+        font-size:clamp(4.08em, 20.4vw, 6.59011111111em);
+        line-height:0.92;
+
+        text-transform:uppercase;
     }
 
     h2{
-        font-size:4em;
+        font-size:3em;
     }
     h3{
         font-size:2.444444em;

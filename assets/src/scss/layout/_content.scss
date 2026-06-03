@@ -1,205 +1,466 @@
 @use '../utility/variables' as *;
 @use '../utility/mixins' as *;
+@use '../utility/animations' as *;
 
 /* -- Content
 --------------------------------- */
 
 #customLandingPage_AccountingSystemsCampaign{
+    width:100%;
+    height:auto;
+    min-height:380px;
 
-    .container{
-        width:100%;
-        max-width:1280px;
-        height:auto;
+    display:grid;
+    position:relative;
+    z-index:0;
 
-        display:block;
-        position:relative;
-        z-index:10;
+    margin:0px;
+    padding:0px;
+    border:0px none;
 
-        margin:0px auto;
-        padding:0px 20px;
-        @include responsive_from(783px){
-            padding:0px 80px;
-        }
-        border:0px none;
-    }
 
-    // Navigation
-    .customLandingPage_navigation{
-        background: linear-gradient(212deg, rgba(255, 255, 255, 0.30) -149.44%, rgba(153, 153, 153, 0.00) 75.37%);
+    // -- Page Background ----------
 
-        width:100%;
-        height:auto;
+        &::before{
+            background:linear-gradient(
+                73deg,
+                #C6C6C6 9.62%,
+                #C7BEC0 39.42%,
+                #F3D5E2 61.06%,
+                #B2BED7 81.73%,
+                #DEDFE7 100%
+            );
 
-        display:block;
-        position:sticky;
-        top:0px;
-        left:0px;
-        z-index:20;
+            width:100%;
+            height:100%;
 
-        margin:0px;
-        padding:0px;
-        border:0px none;
-
-        backdrop-filter:blur(5px);
-
-        .container{
-            max-width:unset;
-
-            display:grid;
-
-            align-items:center;
-            justify-items:end;
-        }
-
-        ul{
-            width:auto;
-            height:auto;
-
-            display:flex;
-            position:relative;
-
-            flex-direction:row;
-            flex-wrap:nowrap;
+            display:block;
+            position:absolute;
+            top:0px;
+            left:0px;
+            z-index:0;
 
             margin:0px;
             padding:0px;
             border:0px none;
 
-            li{
+            opacity:0.4;
+            animation: cssAnimateBackgroundFadeInOut 5s ease-in-out infinite;
+
+            content:'';
+        }
+
+
+    // -- Content ----------
+
+        .customLandingPage_content{
+            grid-column:1;
+            grid-row:1;
+            align-self:start;
+            justify-self:stretch;
+
+            width:100%;
+            height:auto;
+
+            display:block;
+            position:relative;
+            top:0px;
+            left:0px;
+            z-index:10;
+
+            margin:0px;
+            padding:0px;
+            border:0px none;
+
+            .section--FutureReadyFinance{
                 width:100%;
                 height:auto;
 
                 display:block;
                 position:relative;
+                z-index:10;
 
                 margin:0px;
                 padding:0px;
                 border:0px none;
 
-                a{
-                    background:$darkblue;
+                .container{
+                    min-height:calc(100vh - 100px);
+
+                    display:grid;
+                    position:relative;
+                    z-index:10;
+
+                    align-items:center;
+                    justify-items:center;
+
+                    @include containerWidth;
+                    @include sideGutter;
+                    padding-top:200px;
+                    padding-bottom:200px;
+
+
+                    .hero{
+                        display:grid;
+                        position:relative;
+                        z-index:0;
+
+                        grid-template-columns:minmax(0, 1fr);
+                        grid-auto-rows:min-content;
+                        row-gap:20px;
+                        @include responsive_from($xs_screen){
+                            row-gap:40px;
+                        }
+
+                        h1{
+                            color:$white;
+                            margin:20px 0px 0px;
+                            @include responsive_from($xs_screen){
+                                margin:40px 0px 0px;
+                            }
+                        }
+
+                        p{
+                            color:$white;
+                            font-size:$fontsizeLarge;
+                            @include responsive_from($xs_screen){
+                                font-size:$fontsizeVeryLarge;
+                            }
+                            margin:0px;
+
+                            & + p{
+                                justify-self:center;
+                            }
+
+                            @include responsive_to($xs_screen){
+                                br{
+                                    display:none;
+                                }
+                            }
+
+                            .btn{
+                                @include btn($darkblue, $white);
+                                font-size:$fontsizeNormal;
+                                margin-top:20px;
+                                @include responsive_from($xs_screen){
+                                    font-size:$fontsizeLarge;
+                                    margin-top:40px;
+                                }
+                            }
+                        }
+
+                        &::before{
+                            background-image:url('../media/hero_circle.webp');
+                            background-position:center;
+                            background-repeat:no-repeat;
+                            background-size:cover;
+
+                            width:clamp(560px, 180%, 812px);
+                            height:0px;
+
+                            display:block;
+                            position:absolute;
+                            top:50%;
+                            left:50%;
+                            z-index:-1;
+
+                            margin:0px;
+                            // padding:0px 0px clamp(640px, 180%, 767.35px);
+                            padding:0px 0px clamp(560px, 180%, 812px);
+                            border:0px none;
+
+                            border-radius:50%;
+
+                            transform:translate(-50%, -50%);
+
+                            content:'';
+
+                        }
+                    }
+                }
+
+                .background{
+                    width:100%;
+                    height:100%;
+
                     display:block;
+                    position:absolute;
+                    top:0px;
+                    left:0px;
+                    z-index:0;
+
+                    mask:linear-gradient(
+                        to bottom,
+                        rgba($black, 1.0) 50%,
+                        rgba($black, 0.738) 59.5%,
+                        rgba($black, 0.541) 67%,
+                        rgba($black, 0.382) 73.5%,
+                        rgba($black, 0.278) 78.25%,
+                        rgba($black, 0.194) 82.5%,
+                        rgba($black, 0.126) 86.5%,
+                        rgba($black, 0.075) 90.1%,
+                        rgba($black, 0.042) 93.05%,
+                        rgba($black, 0.021) 95.5%,
+                        rgba($black, 0.008) 97.6%,
+                        rgba($black, 0.002) 99.1%,
+                        rgba($black, 0) 100%
+                    );
+
+                    img,
+                    video{
+                        width:auto;
+                        width:100%;
+                        height:auto;
+                        height:100%;
+
+                        display:block;
+                        position:absolute;
+                        z-index:0;
+
+                        margin:0px;
+                        padding:0px;
+                        border:0px none;
+
+                        object-fit:cover;
+                        object-position:50% 50%;
+                    }
+                    video{
+                        z-index:10;
+                    }
+                }
+            }
+
+            .section--Introduction{
+                width:100%;
+                height:auto;
+
+                display:block;
+                position:relative;
+                z-index:10;
+
+                margin:0px;
+                padding:0px;
+                border:0px none;
+
+                .container{
+                    min-height:calc(100vh - 100px);
+
+                    display:grid;
+                    z-index:10;
+
+                    align-items:center;
+                    justify-items:center;
+
+                    text-align:center;
+
+                    @include containerWidth;
+                    @include sideGutter;
+                    @include addSectionSpace(padding-top);
+                    @include addSectionSpace(padding-bottom);
+
+                    .text{
+                        font-size:$fontsizeLarge;
+                        text-align:center;
+                    }
+                }
+            }
+
+            .section--WhoIsItFor{
+
+                .container{
+                    z-index:10;
+
+                    @include containerWidth;
+                    @include sideGutter;
+                    @include addSectionSpace(padding-top);
+                    @include addSectionSpace(padding-bottom);
+
+                    .intro{
+                    }
+                    .tiles{
+                        display:grid;
+                        grid-template-columns:minmax(0, 1fr);
+                        @include responsive_from($xs_screen){
+                            grid-template-columns:repeat(2, minmax(0, 1fr));
+                        }
+                        @include responsive_from($md_screen){
+                            grid-template-columns:repeat(3, minmax(0, 1fr));
+                        }
+                        grid-auto-rows:min-content;
+                        column-gap:20px;
+                        row-gap:20px;
+                        @include responsive_from($breakpoint){
+                            column-gap:40px;
+                            row-gap:40px;
+                        }
+
+                        .tile{
+                            h3{
+                                &::before{
+                                    display:block;
+
+                                    color:$black;
+                                    font-size:$fontsizeNormal;
+                                    font-weight:$fontweightRegular;
+                                }
+                            }
+                            &:nth-child(1){
+                                h3{
+                                    color:$purple;
+                                    &::before{
+                                        content:'Phase one';
+                                    }
+                                }
+                                a{
+                                    @include btn($purple, $white);
+                                }
+                            }
+                            &:nth-child(2){
+                                h3{
+                                    color:$pink;
+                                    &::before{
+                                        content:'Phase two';
+                                    }
+                                }
+                                a{
+                                    @include btn($pink, $white);
+                                }
+                            }
+                            &:nth-child(3){
+                                h3{
+                                    color:$darkblue;
+                                    &::before{
+                                        content:'Phase three';
+                                    }
+                                }
+                                a{
+                                    @include btn($darkblue, $white);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .section--Phases{
+                .phase{
+                    background:rgba(red, 0.1);
+                    display:none;
+
+                    &.jsPhaseActive{
+                        display:block;
+                    }
+
+                    .container{
+                        z-index:10;
+
+                        @include containerWidth;
+                        @include sideGutter;
+                        @include addSectionSpace(padding-top);
+                        @include addSectionSpace(padding-bottom);
+                    }
+                }
+                .contact{
+                    background:rgba(green, 0.1);
+                    display:none;
+
+                    &.jsPhaseActive{
+                        display:block;
+                    }
+                }
+            }
+
+            .section--DecisionRoadmap{
+
+                .container{
+                    z-index:10;
+
+                    @include containerWidth;
+                    @include sideGutter;
+                    @include addSectionSpace(padding-top);
+                    @include addSectionSpace(padding-bottom);
+
+                    h3{
+                        font-size:1rem;
+                    }
+                }
+            }
+
+            .section--Overview{ display:none !important;
+
+                .container{
+                    z-index:10;
+
+                    @include containerWidth;
+                    @include sideGutter;
+                    @include addSectionSpace(padding-top);
+                    @include addSectionSpace(padding-bottom);
+
+                    table{
+                        width:100%;
+                        min-width:320px;
+                        overflow-x:auto;
+                    }
+                }
+            }
+
+            .section--HowPKFCanHelp{ display:none !important;
+
+                .container{
+                    z-index:10;
+
+                    @include containerWidth;
+                    @include sideGutter;
+                    @include addSectionSpace(padding-top);
+                    @include addSectionSpace(padding-bottom);
+                }
+            }
+
+            .section--ContactUs{ display:none !important;
+
+                .container{
+                    z-index:10;
+
+                    @include containerWidth;
+                    @include sideGutter;
+                    @include addSectionSpace(padding-top);
+                    @include addSectionSpace(padding-bottom);
                 }
             }
         }
-    }
 
-    // Header
-    .customLandingPage_header{
-        width:100%;
-        height:auto;
 
-        display:block;
-        position:relative;
-        top:0px;
-        left:0px;
-        z-index:0;
+    // -- Modal ----------
 
-        margin:0px;
-        padding:0px;
-        border:0px none;
+        .customLandingPage_modal{
+            background:rgba($black, 0.9);
 
-        .hero{
+            width:100vw;
+            min-width:320px;
+            height:100vh;
+            min-height:320px;
 
-        }
-        .text{
+            display:none;
+            position:fixed;
+            top:0px;
+            left:0px;
+            bottom:0px;
+            right:0px;
+            z-index:9999;
 
-        }
-    }
+            align-content:center;
+            align-items:center;
+            justify-content:center;
+            justify-items:center;
 
-    // Content
-    .customLandingPage_content{
-        width:100%;
-        height:auto;
+            margin:0px;
+            padding:0px;
+            border:0px none;
 
-        display:block;
-        position:relative;
-        top:0px;
-        left:0px;
-        z-index:0;
+            backdrop-filter:blur(0.5em);
 
-        margin:0px;
-        padding:0px;
-        border:0px none;
-
-        .section--WhoIsItFor{
-        }
-
-        .section--Phases{
-            .phase{
-                background:rgba(red, 0.1);
-                display:none;
-
-                &.jsPhaseActive{
-                    display:block;
-                }
-            }
-            .contact{
-                background:rgba(green, 0.1);
-                display:none;
-
-                &.jsPhaseActive{
-                    display:block;
-                }
+            &.jsModalActive{
+                display:grid;
             }
         }
-
-        .section--DecisionRoadmap{
-        }
-
-        .section--Overview{
-        }
-
-        .section--HowPKFCanHelp{
-        }
-    }
-
-    // Footer
-    .customLandingPage_footer{
-        width:100%;
-        height:auto;
-
-        display:block;
-        position:relative;
-        top:0px;
-        left:0px;
-        z-index:0;
-
-        margin:0px;
-        padding:0px;
-        border:0px none;
-    }
-
-    // Modal
-    .customLandingPage_modal{
-        background:rgba($black, 0.9);
-
-        width:100vw;
-        min-width:320px;
-        height:100vh;
-        min-height:320px;
-
-        display:none;
-        position:fixed;
-        top:0px;
-        left:0px;
-        bottom:0px;
-        right:0px;
-        z-index:9999;
-
-        align-content:center;
-        align-items:center;
-        justify-content:center;
-        justify-items:center;
-
-        margin:0px;
-        padding:0px;
-        border:0px none;
-
-        backdrop-filter:blur(0.5em);
-
-        &.jsModalActive{
-            display:grid;
-        }
-    }
 }
