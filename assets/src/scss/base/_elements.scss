@@ -56,7 +56,7 @@
         font-size:inherit;
         font-style:inherit;
         font-weight:inherit;
-        line-height:inherit;
+        line-height:1.2;
 
         margin:0px;
         padding:0em;
@@ -64,29 +64,6 @@
 
         -webkit-font-smoothing:antialiased;
         -moz-osx-font-smoothing:grayscale;
-
-        & b,
-        & strong{
-            font-weight:$fontweightBold;
-        }
-
-        & em,
-        & i{
-            font-style:italic;
-            font-weight:inherit;
-        }
-
-        & b em,
-        & b i,
-        & strong em,
-        & strong i,
-        & em b,
-        & em strong,
-        & i b,
-        & i strong{
-            font-style:italic;
-            font-weight:$fontweightBold;
-        }
     }
 
     h1{
@@ -307,14 +284,10 @@
     a:visited{
         position:relative;
 
+        color:inherit;
         text-decoration:none;
 
-        transition: background-color $easeInOut,
-                    color $easeInOut,
-                    opacity $easeInOut;
-        &:not(.btn, .skip-to-content){
-            color:inherit;
-        }
+        @include transition($transitionSpeed, $transitionEaseInOut, background-color, color, opacity);
     }
 
 

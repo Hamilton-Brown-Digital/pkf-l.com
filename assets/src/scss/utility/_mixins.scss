@@ -40,7 +40,6 @@
     @mixin containerWidth(){
         width:100%;
         max-width:$container_width;
-
         margin:0px auto;
     }
 
@@ -52,13 +51,37 @@
         }
     }
 
+    // Add element space
+    @mixin addElementSpace($cssProperty){
+        @if ($cssProperty != ''){
+            @include responsive_to($breakpoint){
+                #{$cssProperty}:20px;
+            }
+            @include responsive_from($breakpoint){
+                #{$cssProperty}:40px;
+            }
+        }
+    }
+
+    // Add element space
+    @mixin removeElementSpace($cssProperty){
+        @if ($cssProperty != ''){
+            @include responsive_to($breakpoint){
+                #{$cssProperty}:-20px;
+            }
+            @include responsive_from($breakpoint){
+                #{$cssProperty}:-40px;
+            }
+        }
+    }
+
     // Add section space
     @mixin addSectionSpace($cssProperty){
         @if ($cssProperty != ''){
-            @include responsive_to($md_screen){
+            @include responsive_to($breakpoint){
                 #{$cssProperty}:50px;
             }
-            @include responsive_from($md_screen){
+            @include responsive_from($breakpoint){
                 #{$cssProperty}:100px;
             }
         }
@@ -67,10 +90,10 @@
     // Remove section space
     @mixin removeSectionSpace($cssProperty){
         @if ($cssProperty != ''){
-            @include responsive_to($md_screen){
+            @include responsive_to($breakpoint){
                 #{$cssProperty}:-50px;
             }
-            @include responsive_from($md_screen){
+            @include responsive_from($breakpoint){
                 #{$cssProperty}:-100px;
             }
         }
@@ -156,6 +179,81 @@
 // -- Styling functions
 // --------------------------------
 
+    @mixin underlineLink($underlineColor:'', $underlineHoverColor:''){
+        &:not(.btn, .no_underline, :has(img, iframe, object, audio, video)){
+            width:auto;
+            height:auto;
+
+            display:inline-block;
+            position:relative;
+
+            @media (pointer:fine) {
+                &::after{
+                    @if $underlineColor != '' {
+                        background-color:$underlineColor;
+                    }
+                    @else{
+                        background-color:$black;
+                    }
+
+                    width:100%;
+                    height:0.1rem;
+
+                    display:block;
+                    position:absolute;
+                    top:calc(100% - 0.1em);
+                    left:0px;
+
+                    transform:scaleX(0);
+                    transform-origin:bottom left;
+                    transition:transform $easeOut;
+                    transition-delay:0ms;
+
+                    content:'';
+                }
+
+                &:hover{
+                    &::after{
+                        transform:scaleX(1);
+                    }
+                }
+
+                @if $underlineHoverColor != '' {
+                    &::after{
+                        background-color:$underlineHoverColor;
+                    }
+                    &::before{
+                        background-color:$underlineColor;
+
+                        width:100%;
+                        height:0.1rem;
+
+                        display:block;
+                        position:absolute;
+                        top:calc(100% - 0.1rem);
+                        right:0px;
+
+                        transform:scaleX(1);
+                        transform-origin:bottom right;
+                        transition:transform $easeOut;
+                        transition-delay:$transitionSpeed;
+
+                        content:'';
+                    }
+
+                    &:hover{
+                        &::before{
+                            transform:scaleX(0);
+                            transition-delay:0ms;
+                        }
+                        &::after{
+                            transition-delay:$transitionSpeed;
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
 // -- Specific @mixin functions

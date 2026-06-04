@@ -1,0 +1,168 @@
+@use '../utility/variables' as *;
+@use '../utility/mixins' as *;
+@use '../utility/animations' as *;
+
+/* -- Navigation
+--------------------------------- */
+
+#customLandingPage_AccountingSystemsCampaign{
+
+    .customLandingPage_modal{
+        width:100vw;
+        min-width:320px;
+        height:100vh;
+        min-height:320px;
+
+        display:none;
+        position:fixed;
+        top:0px;
+        left:0px;
+        bottom:0px;
+        right:0px;
+        z-index:9999;
+
+        align-content:center;
+        align-items:center;
+        justify-content:center;
+        justify-items:center;
+
+        margin:0px;
+        padding:0px;
+        @include sideGutter;
+        border:0px none;
+
+        backdrop-filter:blur(0.5em);
+
+        opacity:0;
+        animation: cssAnimateFadeIn calc($transitionSpeed * 2) $transitionEaseOut forwards;
+
+        // Content
+        .tile{
+            z-index:10;
+
+            display:grid;
+            grid-template-columns:minmax(0, 1fr);
+            grid-auto-rows:min-content;
+            row-gap:1.5rem;
+
+            .close{
+                align-self:start;
+                justify-self:end;
+
+                background-color:$white;
+
+                width:2.5rem;
+                height:2.5rem;
+
+                display:block;
+                position:relative;
+
+                text-indent:-9999px;
+
+                margin:0px;
+                padding:0px;
+                border:2px solid $darkblue;
+
+                border-radius:50%;
+
+                overflow:hidden;
+
+                @include transition($transitionSpeed, $transitionEaseInOut, background-color);
+
+                &::before,
+                &::after{
+                    background-color:$darkblue;
+
+                    width:65%;
+                    height:2px;
+
+                    display:block;
+                    position:absolute;
+                    top:50%;
+                    left:50%;
+
+                    transform:translate(-50%, -50%) rotate(45deg);
+
+                    @include transition($transitionSpeed, $transitionEaseInOut, background-color);
+
+                    content:'';
+                }
+                &::after{
+                    transform:translate(-50%, -50%) rotate(-45deg);
+                }
+
+                &:hover{
+                    background-color:$blue;
+                    &::before,
+                    &::after{
+                        background-color:$white;
+                    }
+                }
+            }
+
+            .intro{
+                text-align:center;
+            }
+        }
+
+        // Background
+        .blur{
+            background:linear-gradient(
+                212deg,
+                rgba(255, 255, 255, 0.30) -149.44%,
+                rgba(153, 153, 153, 0.00) 75.37%
+            );
+
+            width:100%;
+            height:150%;
+
+            display:block;
+            position:absolute;
+            top:0px;
+            left:0px;
+            z-index:0;
+
+            margin:0px;
+            padding:0px;
+            border:0px none;
+
+            filter:blur(5px);
+            backdrop-filter:blur(5px);
+
+            @include transition($transitionSpeed, $transitionEaseIn, height);
+
+            content:'';
+
+            &::after{
+                background:linear-gradient(
+                    73deg,
+                    #C6C6C6 9.62%,
+                    #C7BEC0 39.42%,
+                    #F3D5E2 61.06%,
+                    #B2BED7 81.73%,
+                    #DEDFE7 100%
+                );
+
+                width:100%;
+                height:100%;
+
+                display:block;
+                position:absolute;
+                top:0px;
+                left:0px;
+
+                opacity:0;
+
+                @include transition($transitionSpeed, $transitionEaseIn, opacity);
+
+                content:'';
+            }
+
+        }
+
+        // Show Modal
+        &.jsModalActive{
+            display:grid;
+        }
+    }
+}

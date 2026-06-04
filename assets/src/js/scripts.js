@@ -96,11 +96,13 @@
 
 		$('.showModal').click(function(e){
 			e.preventDefault();
+			$('body').addClass('jsModalActive');
 			$('.customModal').addClass('jsModalActive');
 		});
 
 		$('.closeModal').click(function(e){
 			e.preventDefault();
+			$('body').removeClass('jsModalActive');
 			$('.customModal').removeClass('jsModalActive');
 		});
 
@@ -114,6 +116,7 @@
 			$('.phaseElem').removeClass('jsPhaseActive');
 			$('#' + phaseID).addClass('jsPhaseActive');
 			$('.phaseContact').addClass('jsPhaseActive');
+			$('.phaseContact').attr('data-phase', phaseID);
 
 		});
 
@@ -121,7 +124,47 @@
 			// e.preventDefault();
 			$('.phaseElem').removeClass('jsPhaseActive');
 			$('.phaseContact').removeClass('jsPhaseActive');
+			$('.phaseContact').attr('data-phase', '');
 		});
+
+
+	// ----- Carousel
+	// ---------------------------------------------
+
+		// Decision Roadmap
+		var flickityCarouselElem = document.querySelectorAll('.flickityCarousel');
+		if(flickityCarouselElem.length){
+			flickityCarouselElem.forEach(function(el, index, list){
+				// console.log(el);
+				// console.log(index);
+
+				// Create Carousel
+				var flickityCarousel = new Flickity(el, {
+					draggable: '>1',
+					groupCells: true,
+					wrapAround: false,
+					autoPlay: false,
+					adaptiveHeight: false,
+
+					cellSelector: '.slide',
+
+					cellAlign: 'left',
+					contain: true,
+					percentPosition: true,
+
+					fade:true,
+
+					pageDots: false,
+					prevNextButtons: true,
+					arrowShape: 'M0,50L40.5,9.5l6.7,6.7l-30,30H100v9.4H18.9l28.2,28.2l-6.7,6.7L0,50z',
+				});
+
+				// Resize flickity after load to account for sizing errors on load
+				setTimeout(function(){
+					flickityCarousel.resize();
+				}, 1000);
+			});
+		}
 
 
 	});
