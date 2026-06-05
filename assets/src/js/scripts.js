@@ -145,11 +145,12 @@
 					wrapAround: false,
 					autoPlay: false,
 					adaptiveHeight: false,
+					groupCells: true,
 
 					cellSelector: '.slide',
 
 					cellAlign: 'left',
-					contain: true,
+					contain: false,
 					percentPosition: true,
 
 					fade:true,

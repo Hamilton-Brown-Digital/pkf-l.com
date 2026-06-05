@@ -22,11 +22,15 @@
 
 	$breakpoint:783px;
 	$menu_breakpoint:880px;
-	$container_width:1280px;
+
+	// Max widths
+	$small_container:1470px;
+	$large_container:1920px;
+	$single_column:minmax(0, 1fr);
 
 	// Spacing
-	$gutterGap:40px;
-	$sectionGap:100px;
+	$gutterGap:2rem;
+	$sectionGap:5rem;
 
 	// Transitions
 	$transitionEaseIn:cubic-bezier(0.550, 0.055, 0.675, 0.190);
@@ -48,17 +52,21 @@
 	$transparent:transparent;
 	$white:#FFFFFF;
 	$black:#000000;
-    $grey:#5A5A5A;
+    $darkgrey:#5A5A5A;
+	$mediumgrey:#7B7F84;
 	$lightgrey:#FAFAFA;
 
     $blue:#0F3780; // PKF Blue
     $darkblue:#0A2555; // PKF Dark Blue
     $pink:#A42775;
     $purple:#390C42;
-    $darkpurple:#390C42;
 
 	$filter_black:brightness(0) saturate(0%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%);
 	$filter_white:brightness(0) saturate(0%) invert(100%) sepia(0%) saturate(100%) hue-rotate(0deg) brightness(100%) contrast(100%);
+	$filter_darkblue:brightness(0) saturate(0%) invert(11%) sepia(23%) saturate(6110%) hue-rotate(208deg) brightness(94%) contrast(99%);
+	$filter_blue:brightness(0) saturate(0%) invert(15%) sepia(92%) saturate(1804%) hue-rotate(209deg) brightness(93%) contrast(98%);
+	$filter_pink:brightness(0) saturate(0%) invert(22%) sepia(26%) saturate(5124%) hue-rotate(296deg) brightness(95%) contrast(94%);
+	$filter_purple:brightness(0) saturate(0%) invert(8%) sepia(53%) saturate(2955%) hue-rotate(272deg) brightness(99%) contrast(103%);
 
 	// Colour @functions
     @function linearGradient($gradientAngle:'', $colorStart:'', $colorEnd:''){

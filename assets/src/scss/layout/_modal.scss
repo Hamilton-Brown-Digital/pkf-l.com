@@ -41,7 +41,7 @@
             z-index:10;
 
             display:grid;
-            grid-template-columns:minmax(0, 1fr);
+            grid-template-columns:$single_column;
             grid-auto-rows:min-content;
             row-gap:1.5rem;
 
@@ -83,7 +83,7 @@
 
                     transform:translate(-50%, -50%) rotate(45deg);
 
-                    @include transition($transitionSpeed, $transitionEaseInOut, background-color);
+                    @include transition($transitionSpeed, $transitionEaseInOut, background-color, border-color);
 
                     content:'';
                 }
@@ -93,6 +93,8 @@
 
                 &:hover{
                     background-color:$blue;
+                    border-color:$blue;
+
                     &::before,
                     &::after{
                         background-color:$white;

@@ -18,6 +18,8 @@
     padding:0px;
     border:0px none;
 
+    @include addSectionSpace(padding-bottom);
+
 
     // -- Page Background ----------
 
@@ -116,11 +118,24 @@
                         // Intro and Outro
                         .section_intro,
                         .section_outro{
-                            text-align:center;
+                            text-align:left;
+                            @include responsive_from($breakpoint){
+                                text-align:center;
+                            }
+
+                            h2{
+                                & + p{
+                                    margin-top:2rem;
+                                }
+                            }
 
                             p{
                                 font-size:$fontsizeLarge;
                             }
+                        }
+
+                        & + .container{
+                            @include removeSectionSpace(margin-top);
                         }
                     }
                 }
@@ -144,18 +159,18 @@
                             position:relative;
                             z-index:0;
 
-                            grid-template-columns:minmax(0, 1fr);
+                            grid-template-columns:$single_column;
                             grid-auto-rows:min-content;
-                            row-gap:20px;
+                            row-gap:1rem;
                             @include responsive_from($xs_screen){
-                                row-gap:40px;
+                                row-gap:2rem;
                             }
 
                             h1{
                                 color:$white;
-                                margin:20px 0px 0px;
+                                margin:1rem 0px 0px;
                                 @include responsive_from($xs_screen){
-                                    margin:40px 0px 0px;
+                                    margin:2rem 0px 0px;
                                 }
                             }
 
@@ -163,7 +178,7 @@
                                 color:$white;
                                 font-size:$fontsizeLarge;
                                 @include responsive_from($xs_screen){
-                                    font-size:$fontsizeVeryLarge;
+                                    font-size:calc($fontsizeVeryLarge * 1.15);
                                 }
                                 margin:0px;
 
@@ -189,7 +204,7 @@
                             }
 
                             &::before{
-                                background-image:url('../media/hero_circle.webp');
+                                background-image:url('../img/circle_hero.webp');
                                 background-position:center;
                                 background-repeat:no-repeat;
                                 background-size:cover;
@@ -272,6 +287,7 @@
                 .section--Introduction{
 
                     .container{
+                        max-width:$small_container;
                         min-height:calc(100vh - 100px);
 
                         display:grid;
@@ -297,27 +313,31 @@
                 .section--WhoIsItFor{
 
                     .container{
+                        max-width:$small_container;
+
                         display:grid;
-                        grid-template-columns:minimax(0, 1fr);
+                        grid-template-columns:$single_column;
                         grid-auto-rows:min-content;
                         @include addElementSpace(row-gap);
 
-                        .intro{
+                        .section_intro{
                         }
 
                         .tiles{
                             display:grid;
-                            grid-template-columns:minmax(0, 1fr);
+                            grid-template-columns:$single_column;
                             @include responsive_from($md_screen){
-                                grid-template-columns:repeat(2, minmax(0, 1fr));
+                                grid-template-columns:repeat(2, $single_column);
                             }
-                            @include responsive_from($lg_screen){
-                                grid-template-columns:repeat(3, minmax(0, 1fr));
+                            @include responsive_from($xl_screen){
+                                grid-template-columns:repeat(3, $single_column);
                             }
                             grid-auto-rows:min-content;
 
                             @include addElementSpace(column-gap);
                             @include addElementSpace(row-gap);
+
+                            margin:1rem 0px;
 
                             .tile{
                                 display:grid;
@@ -374,6 +394,8 @@
                 }
 
                 .section--Phases{
+
+                    // Phases
                     .phase{
                         background:rgba(red, 0.1);
                         display:none;
@@ -384,51 +406,151 @@
 
                         .container{
                         }
+
+                        .background{
+
+                        }
                     }
+
+                    // Contact Panel
                     .contact{
                         display:none;
-
-                        .tile{
-                            background-color:$darkblue;
-
-                            *:not(.btn){
-                                color:$white;
-                            }
-                        }
+                        @include addSectionSpace(padding-bottom);
 
                         &.jsPhaseActive{
                             display:block;
                         }
 
-                        &[data-phase=PhaseOne]{
-                            .tile{
-                                background-color:$purple;
+                        .container{
+                            max-width:$small_container;
+                            @include addSectionSpace(margin-bottom);
 
-                                .btn{
-                                    @include btn($white, $purple);
-                                }
-                            }
-                        }
-                        &[data-phase=PhaseTwo]{
-                            .tile{
-                                background-color:$pink;
-
-                                .btn{
-                                    @include btn($white, $pink);
-                                }
-                            }
-                        }
-                        &[data-phase=PhaseThree]{
                             .tile{
                                 background-color:$darkblue;
+                                overflow:hidden;
 
-                                .btn{
-                                    @include btn($white, $darkblue);
+                                @include responsive_from($md_screen){
+                                    padding-right:33.333333%;
+                                }
+
+                                .text{
+                                    width:100%;
+                                    height:auto;
+
+                                    display:flex;
+                                    position:relative;
+                                    z-index:10;
+
+                                    flex-direction:row;
+                                    flex-wrap:wrap;
+                                    justify-content:flex-start;
+                                    gap:10px 30px;
+
+                                    margin:0px;
+                                    padding:0px;
+                                    @include responsive_from($sm_screen){
+                                        padding:30px;
+                                    }
+                                    border:0px none;
+
+                                    *:not(.btn){
+                                        color:$white;
+                                    }
+
+                                    h2{
+                                        width:100%;
+                                        flex-shrink: 0;
+                                    }
+                                    p{
+                                        width:100%;
+                                        flex-shrink: 0;
+                                        @include responsive_from($md_screen){
+                                            font-size:$fontsizeLarge;
+                                        }
+                                        margin-top:-10px;
+                                        padding-top:1em;
+                                    }
+                                    .btn{
+                                        @include btn($white, $darkblue);
+                                    }
+                                    a:not(.btn){
+                                        @include btn($transparent, $white);
+                                        font-weight:normal;
+                                        padding-left:0px;
+                                        padding-right:1.75em;
+
+                                        &::after{
+                                            background-image:url('../img/icon--Reset.svg');
+                                            background-position:center;
+                                            background-repeat:no-repeat;
+                                            background-size:contain;
+
+                                            width:1.1em;
+                                            height:1.1em;
+
+                                            display:block;
+                                            position:absolute;
+                                            top:50%;
+                                            right:0px;
+
+                                            margin:0px;
+                                            padding:0px;
+                                            border:0px none;
+
+                                            transform:translateY(-50%) rotate(0deg);
+                                            @include transition(calc($transitionSpeed * 2), $transitionEaseInOut, transform);
+
+                                            content:'';
+                                        }
+
+                                        &:hover{
+                                            background-color:$transparent;
+                                            opacity:0.75;
+
+                                            &::after{
+                                                transform:translateY(-50%) rotate(-360deg);
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                                .shape{
+                                    background-image:url('../img/shape--blue.webp');
+                                    background-position:center center;
+                                    background-repeat:no-repeat;
+                                    background-size:contain;
+
+                                    width:80%;
+                                    height:auto;
+
+                                    display:block;
+                                    position:absolute;
+                                    left:110%;
+                                    top:30%;
+                                    z-index:0;
+
+                                    margin:0px;
+                                    padding:0px;
+                                    border:0px none;
+
+                                    transform:translate(-50%, -50%);
+
+                                    @include responsive_to($md_screen){
+                                        opacity:0.25;
+                                    }
+
+                                    &::after{
+                                        @include blankSpace(100%);
+                                    }
                                 }
                             }
                         }
 
                         .background{
+                            background-size:cover;
+                            background-position:center bottom;
+
                             width:100%;
                             height:100%;
 
@@ -463,6 +585,64 @@
                                 object-position:50% 100%;
                             }
                         }
+
+                        &[data-phase=PhaseOne]{
+                            .container{
+                                .tile{
+                                    background-color:$purple;
+
+                                    .text{
+                                        .btn{
+                                            @include btn($white, $purple);
+                                        }
+                                    }
+                                    .shape{
+                                        background-image:url('../img/shape--purple.webp');
+                                    }
+                                }
+                            }
+                            .background{
+                                background-image:url('../img/background_bottom--purple.webp');
+                            }
+                        }
+                        &[data-phase=PhaseTwo]{
+                            .container{
+                                .tile{
+                                    background-color:$pink;
+
+                                    .text{
+                                        .btn{
+                                            @include btn($white, $pink);
+                                        }
+                                    }
+                                    .shape{
+                                        background-image:url('../img/shape--pink.webp');
+                                    }
+                                }
+                            }
+                            .background{
+                                background-image:url('../img/background_bottom--pink.webp');
+                            }
+                        }
+                        &[data-phase=PhaseThree]{
+                            .container{
+                                .tile{
+                                    background-color:$darkblue;
+
+                                    .text{
+                                        .btn{
+                                            @include btn($white, $darkblue);
+                                        }
+                                    }
+                                    .shape{
+                                        background-image:url('../img/shape--blue.webp');
+                                    }
+                                }
+                            }
+                            .background{
+                                background-image:url('../img/background_bottom--blue.webp');
+                            }
+                        }
                     }
                 }
 
@@ -470,36 +650,774 @@
 
                     .container{
                         display:grid;
-                        grid-template-columns:minimax(0, 1fr);
+                        grid-template-columns:$single_column;
                         grid-auto-rows:min-content;
                         @include addElementSpace(row-gap);
 
-                        h3{
-                            font-size:1rem;
+                        .section_intro{
+                            text-align:left;
                         }
-                    }
-                }
 
-                .section--Overview{ display:none !important;
-
-                    .container{
-                        table{
+                        .carousel{
                             width:100%;
-                            min-width:320px;
-                            overflow-x:auto;
+                            height:auto;
+
+                            display:block;
+                            position:relative;
+
+                            margin:1rem 0px;
+                            padding:0px 0px 70px;
+                            @include responsive_from($sm_screen){
+                                padding:0px 0px 0px 150px;
+                            }
+                            border:0px none;
+
+                            .flickity-viewport{
+                                width:100%;
+
+                                display:block;
+                                position:relative;
+
+                                overflow:visible;
+
+                                .flickity-slider{
+                                    height:100%;
+                                }
+
+                                .slide{
+                                    width:100%;
+                                    @include responsive_from($md_screen){
+                                        width:50%;
+                                    }
+                                    @include responsive_from($xl_screen){
+                                        width:33.3333%;
+                                    }
+                                    min-height:100%;
+                                    display:grid;
+                                    align-items:stretch;
+                                    padding:0px $gutterGap 0px 0px;
+
+                                    opacity:0.25;
+                                    transition:opacity $easeInOut;
+
+                                    &.is-selected{
+                                        opacity:1;
+
+
+                                        & ~ .slide{
+                                            opacity:1;
+                                        }
+                                    }
+                                }
+                            }
+
+                            .flickity-button{
+                                background-color:$transparent;
+
+                                width:45px;
+                                height:45px;
+
+                                display:block;
+                                position:absolute;
+                                top:unset;
+                                right:unset;
+                                bottom:0px;
+                                left:0px;
+                                z-index:10;
+
+                                margin:0px;
+                                padding:0px;
+                                border:0px none;
+
+                                margin:0px;
+                                padding:0px;
+                                border:2px solid $darkblue;
+
+                                transform:unset;
+                                @include transition($transitionSpeed, $transitionEaseInOut, background-color, border-color);
+
+                                &::before,
+                                &::after{
+                                    background-color:$darkblue;
+
+                                    width:30%;
+                                    height:2px;
+
+                                    display:block;
+                                    position:absolute;
+                                    top:50%;
+                                    left:49%;
+
+                                    margin:0px;
+                                    padding:0px;
+                                    border:0px none;
+
+                                    transform:translate(-50%, -50%) rotate(45deg);
+                                    transform-origin:center right;
+
+                                    @include transition($transitionSpeed, $transitionEaseInOut, background-color);
+
+                                    content:'';
+                                }
+                                &::after{
+                                    transform:translate(-50%, -50%) rotate(-45deg);
+                                }
+
+                                svg{
+                                    display:none;
+                                }
+
+                                &.previous{
+                                    left:0px;
+                                    transform:rotate(180deg);
+                                }
+                                &.next{
+                                    left:60px;
+                                }
+
+                                &:hover{
+                                    background-color:$blue;
+                                    border-color:$blue;
+                                    opacity:1.0;
+
+                                    &::before,
+                                    &::after{
+                                        background-color:$white;
+                                    }
+                                }
+                            }
+                        }
+
+                        .tile{
+                            h3{
+                                span{
+                                    display:block;
+                                    position:relative;
+
+                                    font-size:$fontsizeLarge;
+
+                                    margin:0px 0px 0.5rem;
+                                }
+                            }
                         }
                     }
                 }
 
-                .section--HowPKFCanHelp{ display:none !important;
+                .section--Overview{
 
                     .container{
+                        max-width:$small_container;
+
+                        display:grid;
+                        grid-template-columns:$single_column;
+                        grid-auto-rows:min-content;
+                        @include addElementSpace(row-gap);
+
+                        .table{
+                            width:100%;
+                            height:auto;
+
+                            display:block;
+                            position:relative;
+
+                            margin:1rem 0px;
+                            padding:0px;
+                            border:0px none;
+
+                            overflow-x:auto;
+
+                            table{
+                                width:100%;
+                                min-width:calc($md_screen - 160px);
+                                height:auto;
+
+                                display:table;
+                                position:relative;
+
+                                margin:0px;
+                                padding:0px;
+                                border:0px none;
+
+                                border-spacing:5px;
+                                border-collapse:separate;
+
+                                tr{
+                                    position:relative;
+                                }
+
+                                th,
+                                td{
+                                    position:relative;
+                                    vertical-align:top;
+                                }
+
+                                thead{
+                                    font-size:$fontsizeNormal;
+                                    font-weight:$fontweightBold;
+                                    text-align:left;
+
+                                    tr{
+                                        th{
+                                            padding:1.5rem 1rem;
+
+                                            border-radius:1rem;
+
+                                            &:nth-child(1){
+                                                background-color:$white;
+                                                color:$blue;
+                                            }
+                                            &:nth-child(2){
+                                                background-color:$purple;
+                                                color:$white;
+                                            }
+                                            &:nth-child(3){
+                                                background-color:$pink;
+                                                color:$white;
+                                            }
+                                            &:nth-child(4){
+                                                background-color:$darkblue;
+                                                color:$white;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                tbody{
+                                    font-size:$fontsizeSmall;
+                                    text-align:left;
+
+                                    tr{
+
+                                        &::after{
+                                            background:rgba($mediumgrey, 0.5);
+
+                                            width:100%;
+                                            height:1px;
+
+                                            display:block;
+                                            position:absolute;
+                                            left:3px;
+                                            bottom:0px;
+
+                                            content:'';
+                                        }
+
+                                        td{
+                                            padding:1.35rem 1rem;
+
+                                            &:nth-child(1){
+                                                color:$blue;
+                                                font-weight:$fontweightBold;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            @include responsive_to($md_screen){
+                                table{
+                                    min-width:0px;
+
+                                    display:grid;
+                                    grid-template-columns:$single_column;
+                                    grid-auto-rows:min-content;
+
+                                    padding:0px;
+
+                                    border-spacing:0px;
+                                    border-collapse:collapse;
+
+                                    thead{
+                                        display:none;
+                                    }
+                                    tbody{
+                                        width:100%;
+                                        height:auto;
+
+                                        display:block;
+                                        position:relative;
+
+                                        margin:0px;
+                                        padding:0px;
+                                        border:0px none;
+
+                                        tr{
+                                            width:100%;
+                                            height:auto;
+
+                                            display:grid;
+                                            position:relative;
+
+                                            grid-template-columns:$single_column;
+                                            grid-auto-rows:min-content;
+                                            row-gap:1rem;
+
+                                            margin:0px;
+                                            padding:0px;
+                                            border:0px none;
+
+                                            & + tr{
+                                                margin-top:2rem;
+                                                // padding-top:1.5rem;
+                                                // border-top:1px solid rgba($mediumgrey, 0.5);
+                                            }
+
+                                            &::after{
+                                                display:none;
+                                            }
+
+                                            td{
+                                                width:100%;
+                                                display:block;
+                                                padding:0px 1rem;
+
+                                                &::before{
+                                                    display:block;
+                                                    font-weight:$fontweightBold;
+                                                    margin-bottom:0.1rem;
+                                                }
+
+                                                &:nth-child(1){
+                                                    background-color:$white;
+                                                    font-size:$fontsizeNormal;
+                                                    padding:0.75rem 1rem;
+                                                    border-radius:1rem;
+                                                }
+
+                                                &:nth-child(2){
+                                                    &::before{
+                                                        color:$purple;
+                                                        content:'Start-up';
+                                                    }
+                                                }
+
+                                                &:nth-child(3){
+                                                    &::before{
+                                                        color:$pink;
+                                                        content:'Scaling';
+                                                    }
+                                                }
+
+                                                &:nth-child(4){
+                                                    &::before{
+                                                        color:$darkblue;
+                                                        content:'Enterprise Resource Planning';
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        .tile{
+                            background-color:$white;
+                            height:auto;
+                            margin:1rem 0px;
+                            overflow:hidden;
+
+                            @include responsive_from($md_screen){
+                                padding-right:40%;
+                            }
+
+                            .text{
+                                width:100%;
+                                height:auto;
+
+                                display:block;
+                                position:relative;
+                                z-index:10;
+
+                                margin:0px;
+                                padding:0px;
+                                @include responsive_from($sm_screen){
+                                    padding:30px;
+                                }
+                                border:0px none;
+
+                                p{
+                                    strong{
+                                        color:$darkblue;
+                                        font-size:$fontsizeLarge;
+                                        font-weight:$fontweightRegular;
+                                    }
+                                }
+
+                            }
+
+                            .background{
+                                background-image:url('../img/background_overviewtile.webp');
+                                background-position:center center;
+                                background-repeat:no-repeat;
+                                background-size:contain;
+
+                                width:85%;
+                                height:auto;
+
+                                display:block;
+                                position:absolute;
+                                left:102.5%;
+                                top:50%;
+                                z-index:0;
+
+                                margin:0px;
+                                padding:0px;
+                                border:0px none;
+
+                                transform:translate(-50%, -50%);
+
+                                @include responsive_to($md_screen){
+                                    opacity:0.25;
+                                }
+
+                                &::after{
+                                    @include blankSpace(78.91%);
+                                }
+                            }
+                        }
+                    }
+
+                    // .background{
+                    //     background-size:cover;
+                    //     background-position:center bottom;
+
+                    //     width:100%;
+                    //     height:100%;
+
+                    //     display:block;
+                    //     position:absolute;
+                    //     top:0px;
+                    //     left:0px;
+                    //     z-index:0;
+
+                    //     mask:linear-gradient(
+                    //         to bottom,
+                    //         rgba($black, 0) 0%,
+                    //         rgba($black, 0.5) 66.666667%,
+                    //         rgba($black, 1) 100%
+                    //     );
+
+                    //     img{
+                    //         width:auto;
+                    //         width:100%;
+                    //         height:auto;
+                    //         height:100%;
+
+                    //         display:block;
+                    //         position:absolute;
+                    //         z-index:0;
+
+                    //         margin:0px;
+                    //         padding:0px;
+                    //         border:0px none;
+
+                    //         object-fit:cover;
+                    //         object-position:50% 100%;
+                    //     }
+                    // }
+                }
+
+                .section--HowPKFCanHelp{
+
+                    .container{
+                        max-width:$small_container;
+
+                        display:grid;
+                        grid-template-columns:$single_column;
+                        grid-auto-rows:min-content;
+                        @include addElementSpace(row-gap);
+
+                        .list{
+                            width:100%;
+                            height:auto;
+
+                            display:block;
+                            position:relative;
+
+                            margin:1rem 0px;
+                            padding:0px;
+                            border:0px none;
+
+                            .item{
+                                width:100%;
+                                height:auto;
+
+                                display:grid;
+                                grid-template-columns:$single_column;
+                                grid-auto-rows:min-content;
+                                position:relative;
+
+                                @include responsive_from($xl_screen){
+                                    grid-template-columns:3fr 4fr;
+                                }
+
+                                margin:0px;
+                                padding:0px;
+                                border:0px none;
+
+                                & + .item{
+                                    margin-top:$gutterGap;
+                                    padding-top:$gutterGap;
+                                    border-top:1px solid $mediumgrey;
+                                }
+
+                                h3{
+                                    display:grid;
+                                    grid-template-columns:min-content auto;
+                                    align-items:center;
+
+                                    font-weight:$fontweightBold;
+
+                                    margin:0.5rem 0px !important;
+
+                                    span{
+                                        width:auto;
+                                        height:auto;
+
+                                        display:block;
+                                        position:relative;
+
+                                        font-size:$fontsizeLarge;
+                                        font-weight:$fontweightRegular;
+
+                                        margin-right:1rem;
+                                        @include responsive_from($xl_screen){
+                                            margin-right:2rem;
+                                        }
+                                    }
+                                }
+
+                                p{
+                                    margin:0.5rem 0px !important;
+                                }
+                            }
+                        }
+
                     }
                 }
 
-                .section--ContactUs{ display:none !important;
+                .section--ContactUs{
 
                     .container{
+                        display:grid;
+                        grid-template-columns:$single_column;
+                        grid-auto-rows:min-content;
+                        @include addElementSpace(row-gap);
+
+                        @include responsive_from($md_screen){
+                            padding-right:460px;
+                            padding-right:calc(42.5% + 40px);
+                        }
+                        @include responsive_from($xxl_screen){
+                            padding-right:700px;
+                        }
+
+                        .section_intro{
+                            text-align:left;
+
+                            h2{
+                                @include fontTitleHero;
+                                font-size:clamp(4.08em, 20.4vw, 6.59011111111em);
+                            }
+                        }
+
+                        .form{
+                        }
+
+                        .contacts{
+                            h2{
+
+                            }
+
+                            .grid{
+                                width:100%;
+                                height:auto;
+
+                                position:relative;
+
+                                display:grid;
+                                grid-template-rows:$single_column;
+                                @include responsive_from($xs_screen){
+                                    grid-template-columns:repeat(2, $single_column);
+                                }
+                                column-gap:$gutterGap;
+                                row-gap:$gutterGap;
+
+                                @include responsive_from($md_screen){
+                                    display:flex;
+                                    flex-direction:row;
+                                    flex-wrap:wrap;
+                                    gap:$gutterGap;
+                                }
+
+                                margin:0px;
+                                padding:0px;
+                                border:0px none;
+
+                                .contact_tile{
+                                    width:100%;
+                                    max-width:320px;
+                                    height:auto;
+
+                                    display:grid;
+                                    position:relative;
+
+                                    grid-template-columns:$single_column;
+                                    grid-template-rows:min-content;
+                                    column-gap:15px;
+                                    row-gap:15px;
+
+                                    margin:0px;
+                                    padding:0px;
+                                    border:0px none;
+
+                                    .link{
+                                        grid-column:1;
+                                        grid-row:1;
+                                        align-self:stretch;
+                                        justify-self:stretch;
+
+                                        width:100%;
+                                        height:auto;
+
+                                        display:block;
+                                        position:relative;
+                                        z-index:10;
+
+                                        border-radius:20px;
+
+                                        overflow:hidden;
+
+                                        .image{
+                                            grid-column:1;
+                                            grid-row:1;
+                                            align-self:start;
+                                            justify-self:stretch;
+
+                                            width:auto;
+                                            height:auto;
+
+                                            display:block;
+                                            position:relative;
+                                            z-index:0;
+                                        }
+                                    }
+
+                                    .tile{
+                                        grid-column:1;
+                                        grid-row:2;
+                                        align-self:start;
+                                        justify-self:stretch;
+
+                                        width:100%;
+                                        height:auto;
+
+                                        display:flex;
+                                        position:relative;
+
+                                        flex-direction:row;
+                                        flex-wrap:wrap;
+                                        align-items:center;
+                                        justify-content:space-between;
+                                        gap:1rem;
+
+                                        margin:0px;
+                                        padding:1.5rem;
+
+                                        .name{
+                                            width:100%;
+                                            flex-shrink:0;
+                                            text-align:center;
+                                            margin:0px;
+                                        }
+
+                                        .job{
+                                            width:100%;
+                                            flex-shrink:0;
+                                            text-align:center;
+                                            margin:-0.75rem 0px 1rem;
+                                        }
+
+                                        .btn{
+                                            @include btn($darkblue, $white);
+                                            margin:0px auto
+                                        }
+
+                                        .icons{
+                                            width:auto;
+                                            display:grid;
+                                            grid-template-columns:repeat(3, $single_column);
+                                            column-gap:0.75rem;
+                                            margin:0px auto;
+
+                                            *{
+                                                width:20px;
+                                                height:20px;
+
+                                                display:block;
+                                                position:relative;
+                                            }
+
+                                            a{
+                                                img{
+                                                    filter:$filter_darkblue;
+                                                    @include transition($transitionSpeed, $transitionEaseInOut, filter);
+                                                }
+                                                &:hover{
+                                                    img{
+                                                        filter:$filter_blue;
+                                                    }
+                                                }
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .background{
+                        background-image:url('../img/background_getintouch.webp');
+                        background-position:top 25% right;
+                        background-repeat:no-repeat;
+                        background-size:contain;
+
+                        width:100%;
+                        height:100%;
+
+                        display:block;
+                        position:absolute;
+                        top:0px;
+                        right:0px;
+
+                        margin:0px;
+                        padding:0px;
+                        border:0px none;
+
+                        mask:linear-gradient(
+                            to bottom,
+                            rgba($black, 1.0) 50%,
+                            rgba($black, 0.738) 59.5%,
+                            rgba($black, 0.541) 67%,
+                            rgba($black, 0.382) 73.5%,
+                            rgba($black, 0.278) 78.25%,
+                            rgba($black, 0.194) 82.5%,
+                            rgba($black, 0.126) 86.5%,
+                            rgba($black, 0.075) 90.1%,
+                            rgba($black, 0.042) 93.05%,
+                            rgba($black, 0.021) 95.5%,
+                            rgba($black, 0.008) 97.6%,
+                            rgba($black, 0.002) 99.1%,
+                            rgba($black, 0) 100%
+                        );
+
+                        @include responsive_to($md_screen){
+                            opacity:0.25;
+                            background-position:top 10% right;
+                            background-size:175% auto;
+                        }
                     }
                 }
         }

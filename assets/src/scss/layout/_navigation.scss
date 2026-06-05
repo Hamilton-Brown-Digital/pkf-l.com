@@ -94,12 +94,12 @@
                 height:auto;
 
                 display:none;
-                @include responsive_from($menu_breakpoint){
-                    display:flex;
+                @include responsive_to($menu_breakpoint){
                     flex-direction:column;
                     align-items:end;
                 }
                 @include responsive_from($menu_breakpoint){
+                    display:flex;
                     flex-direction:row;
                     flex-wrap:wrap;
                     align-items:center;
