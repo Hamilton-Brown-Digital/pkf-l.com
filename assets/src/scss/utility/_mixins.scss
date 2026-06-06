@@ -132,6 +132,13 @@
 		height:1px; width: 1px;
 		margin:-1px; padding: 0; border: 0;
 	}
+	@mixin show{
+		position:relative;
+		overflow:auto;
+		clip:unset;
+		height:auto; width:auto;
+		margin:0px; padding: 0; border: 0;
+	}
 
     // Truncate amount of lines shown and add a …
 	@mixin truncate($lines:'', $lineHeight:''){

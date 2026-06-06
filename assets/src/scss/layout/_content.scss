@@ -83,12 +83,12 @@
                     &:hover,
                     &:active,
                     &:visited{
-                        color:$darkblue;
+                        color:$blue;
                         font-weight:$fontweightBold;
-                        @include underlineLink($darkblue, $blue);
+                        @include underlineLink($blue, $darkblue);
 
                         &:hover{
-                            color:$blue;
+                            color:$darkblue;
                         }
                     }
                 }
@@ -394,32 +394,384 @@
                 }
 
                 .section--Phases{
+                    // display:none;
+                    @include hidden;
+
+                    &.jsPhaseActive{
+                        @include show;
+                        overflow:visible;
+                    }
+
+                    &.jsPhaseFadeOut{
+                        animation:cssAnimateFadeOut $transitionSpeed ease-in-out forwards;
+                    }
 
                     // Phases
                     .phase{
-                        background:rgba(red, 0.1);
                         display:none;
+                        opacity:0;
 
-                        &.jsPhaseActive{
+                        .title{
+                            position:relative;
+                            overflow:visible;
+
+                            .container{
+                                min-height:calc(100vh - 100px);
+
+                                display:grid;
+                                align-items:center;
+                                justify-items:center;
+                                padding-top:200px;
+                                padding-bottom:200px;
+
+                                position:relative;
+                                z-index:20;
+
+                                text-align:center;
+
+                                overflow:visible;
+
+                                .text{
+                                    width:100%;
+                                    height:auto;
+
+                                    display:block;
+                                    position:relative;
+                                    z-index:30;
+
+                                    h2{
+                                        @include fontTitleLarge;
+                                        font-weight:$fontweightBold;
+                                    }
+                                }
+
+                                &::before,
+                                &::after{
+
+                                    width:clamp(560px, 180%, 812px);
+                                    height:0px;
+
+                                    display:block;
+                                    position:absolute;
+                                    top:50%;
+                                    left:50%;
+                                    z-index:20;
+
+                                    margin:0px;
+                                    // padding:0px 0px clamp(640px, 180%, 767.35px);
+                                    padding:0px 0px clamp(560px, 180%, 812px);
+                                    border:0px none;
+
+                                    border-radius:50%;
+
+                                    transform:translate(-50%, -50%);
+
+                                    content:'';
+                                }
+
+                                &::before{
+                                    background-position:center;
+                                    background-repeat:no-repeat;
+                                    background-size:cover;
+
+                                    z-index:21;
+
+                                    opacity:0.5;
+                                }
+                                &::after{
+                                    backdrop-filter:blur(50px);
+                                    background-color:rgba(255, 255, 255, 0.5 );
+                                }
+                            }
+
+                            .background{
+                                background-position:center top;
+                                background-repeat:no-repeat;
+                                background-size:contain;
+
+                                width:100%;
+                                min-width:$md_screen;
+                                height:auto;
+
+                                display:block;
+                                position:absolute;
+                                top:45%;
+                                left:50%;
+                                z-index:0;
+
+                                transform:translate(-50%, -50%);
+
+                                &::after{
+                                    @include blankSpace(48.44%);
+                                }
+                            }
+                        }
+
+                        .at_a_glance{
+                            position:relative;
+                            z-index:30;
+
+                            @include removeSectionSpace(margin-top);
+
+                            text-align:center;
+
+                            .container{
+                                position:relative;
+                                z-index:20;
+                                overflow:visible;
+                            }
+                        }
+
+                        .callout{
+                            position:relative;
+                            z-index:20;
+                            overflow:visible;
+
+                            .container{
+                                .tile{
+                                    z-index:20;
+                                    .text{
+                                        .intro{
+
+                                        }
+                                        .highlight{
+                                            ul{
+                                                display:grid;
+                                                grid-template-columns:$single_column;
+                                                grid-auto-rows:min-content;
+
+                                                margin:0px;
+                                                padding:0px;
+                                                border:0px none;
+
+                                                li{
+                                                    list-style:none;
+
+                                                    margin:0px;
+                                                    padding:0px;
+                                                    border:0px none;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            .background{
+                                background-position:center top;
+                                background-repeat:no-repeat;
+                                background-size:contain;
+
+                                width:100%;
+                                min-width:$md_screen;
+                                height:auto;
+
+                                display:block;
+                                position:absolute;
+                                top:35%;
+                                left:50%;
+                                z-index:0;
+
+                                transform:translate(-50%, -50%);
+
+                                mask:linear-gradient(
+                                    to bottom,
+                                    rgba($black, 0) 0%,
+                                    rgba($black, 1.0) 20%,
+                                    rgba($black, 1.0) 50%,
+                                    rgba($black, 1.0) 80%,
+                                    rgba($black, 0) 100%
+                                );
+
+                                &::after{
+                                    @include blankSpace(69.17%);
+                                }
+                            }
+                        }
+
+                        .wrap_up{
+                            position:relative;
+                            z-index:30;
+
+                            text-align:center;
+
+                            .container{
+                                max-width:$small_container;
+                            }
+
+                            .text{
+                                font-size:$fontsizeLarge;
+                                @include responsive_from($xs_screen){
+                                    font-size:$fontsizeVeryLarge;
+                                }
+                                @include responsive_from($lg_screen){
+                                    font-size:$fontsizeExtraLarge;
+                                }
+                                text-align:center;
+                            }
+                        }
+
+                        .shape01,
+                        .shape02,
+                        .shape03{
+                            background-repeat:no-repeat;
+                            background-size:cover;
+
+                            width:auto;
+                            height:auto;
+
                             display:block;
+                            position:absolute;
+                            z-index:10;
+
+                            &::after{
+                                @include blankSpace(100%);
+                            }
+
+                            &.shape01{
+                                width:50%;
+                                min-width:475px;
+                                left:5%;
+                                top:75%;
+                                transform:translateX(-50%) translateY(-50%);
+                            }
+                            &.shape02{
+                                width:25%;
+                                min-width:247.5px;
+                                left:95%;
+                                top:50%;
+                                transform:translateX(-50%) translateY(-50%);
+                            }
+                            &.shape03{
+                                width:15%;
+                                min-width:148.5px;
+                                left:100%;
+                                top:50%;
+                                transform:translateX(-50%) translateY(-50%);
+                            }
                         }
 
-                        .container{
+                        // Specific Phases
+                        &#PhaseOne{
+                            h2,
+                            h3,
+                            h4,
+                            strong,
+                            .at_a_glance li,
+                            .wrap_up{
+                                color:$purple;
+                            }
+
+                            .shape01{
+                                background-image:url('../img/shape_1--purple.webp');
+                            }
+                            .shape02{
+                                background-image:url('../img/shape_2--purple.webp');
+                            }
+                            .shape03{
+                                background-image:url('../img/shape_3--purple.webp');
+                            }
+
+                            .title{
+                                .container{
+                                    &::before{
+                                        background-image:url('../img/circle_phase--purple.webp');
+                                    }
+                                }
+                                .background{
+                                    background-image:url('../img/background_top--purple.webp');
+                                }
+                            }
+
+                            .callout{
+                                .background{
+                                    background-image:url('../img/background_middle--purple.webp');
+                                }
+                            }
                         }
 
-                        .background{
+                        &#PhaseTwo{
+                            h2,
+                            h3,
+                            h4,
+                            strong,
+                            .at_a_glance li,
+                            .wrap_up{
+                                color:$pink;
+                            }
 
+                            .shape01{
+                                background-image:url('../img/shape_1--pink.webp');
+                            }
+                            .shape02{
+                                background-image:url('../img/shape_2--pink.webp');
+                            }
+                            .shape03{
+                                background-image:url('../img/shape_3--pink.webp');
+                            }
+
+                            .title{
+                                .container{
+                                    &::before{
+                                        background-image:url('../img/circle_phase--pink.webp');
+                                    }
+                                }
+                                .background{
+                                    background-image:url('../img/background_top--pink.webp');
+                                }
+                            }
+
+                            .callout{
+                                .background{
+                                    background-image:url('../img/background_middle--pink.webp');
+                                }
+                            }
+                        }
+
+                        &#PhaseThree{
+                            h2,
+                            h3,
+                            h4,
+                            strong,
+                            .at_a_glance li,
+                            .wrap_up{
+                                color:$darkblue;
+                            }
+
+                            .shape01{
+                                background-image:url('../img/shape_1--blue.webp');
+                            }
+                            .shape02{
+                                background-image:url('../img/shape_2--blue.webp');
+                            }
+                            .shape03{
+                                background-image:url('../img/shape_3--blue.webp');
+                            }
+
+                            .title{
+                                .container{
+                                    &::before{
+                                        background-image:url('../img/circle_phase--blue.webp');
+                                    }
+                                }
+                                .background{
+                                    background-image:url('../img/background_top--blue.webp');
+                                }
+                            }
+
+                            .callout{
+                                .background{
+                                    background-image:url('../img/background_middle--blue.webp');
+                                }
+                            }
                         }
                     }
 
                     // Contact Panel
                     .contact{
-                        display:none;
+                        position:relative;
+                        overflow:visible;
                         @include addSectionSpace(padding-bottom);
-
-                        &.jsPhaseActive{
-                            display:block;
-                        }
 
                         .container{
                             max-width:$small_container;
@@ -516,7 +868,6 @@
                                 }
 
                                 .shape{
-                                    background-image:url('../img/shape--blue.webp');
                                     background-position:center center;
                                     background-repeat:no-repeat;
                                     background-size:contain;
@@ -548,45 +899,47 @@
                         }
 
                         .background{
-                            background-size:cover;
-                            background-position:center bottom;
+                            background-position:center top;
+                            background-repeat:no-repeat;
+                            background-size:contain;
 
                             width:100%;
-                            height:100%;
+                            min-width:$md_screen;
+                            height:auto;
 
                             display:block;
                             position:absolute;
-                            top:0px;
-                            left:0px;
+                            top:40%;
+                            left:50%;
                             z-index:0;
 
-                            mask:linear-gradient(
-                                to bottom,
-                                rgba($black, 0) 0%,
-                                rgba($black, 0.5) 66.666667%,
-                                rgba($black, 1) 100%
-                            );
+                            transform:translate(-50%, -50%);
 
-                            img{
-                                width:auto;
-                                width:100%;
-                                height:auto;
-                                height:100%;
+                                mask:linear-gradient(
+                                    to bottom,
+                                    rgba($black, 0) 0%,
+                                    rgba($black, 1.0) 20%,
+                                    rgba($black, 1.0) 50%,
+                                    rgba($black, 1.0) 80%,
+                                    rgba($black, 1.0) 100%
+                                );
 
-                                display:block;
-                                position:absolute;
-                                z-index:0;
-
-                                margin:0px;
-                                padding:0px;
-                                border:0px none;
-
-                                object-fit:cover;
-                                object-position:50% 100%;
+                            &::after{
+                                @include blankSpace(47.92%);
                             }
                         }
+                    }
 
-                        &[data-phase=PhaseOne]{
+                    // Show Selected Phase
+                    &[data-phase=PhaseOne]{
+                        .phase{
+                            &#PhaseOne{
+                                display:block;
+                                animation:cssAnimateFadeIn $transitionSpeed ease-in-out forwards;
+                                animation-delay:$transitionSpeed;
+                            }
+                        }
+                        .contact{
                             .container{
                                 .tile{
                                     background-color:$purple;
@@ -597,7 +950,7 @@
                                         }
                                     }
                                     .shape{
-                                        background-image:url('../img/shape--purple.webp');
+                                        background-image:url('../img/shape_1--purple.webp');
                                     }
                                 }
                             }
@@ -605,7 +958,17 @@
                                 background-image:url('../img/background_bottom--purple.webp');
                             }
                         }
-                        &[data-phase=PhaseTwo]{
+                    }
+
+                    &[data-phase=PhaseTwo]{
+                        .phase{
+                            &#PhaseTwo{
+                                display:block;
+                                animation:cssAnimateFadeIn $transitionSpeed ease-in-out forwards;
+                                animation-delay:$transitionSpeed;
+                            }
+                        }
+                        .contact{
                             .container{
                                 .tile{
                                     background-color:$pink;
@@ -616,7 +979,7 @@
                                         }
                                     }
                                     .shape{
-                                        background-image:url('../img/shape--pink.webp');
+                                        background-image:url('../img/shape_1--pink.webp');
                                     }
                                 }
                             }
@@ -624,7 +987,17 @@
                                 background-image:url('../img/background_bottom--pink.webp');
                             }
                         }
-                        &[data-phase=PhaseThree]{
+                    }
+
+                    &[data-phase=PhaseThree]{
+                        .phase{
+                            &#PhaseThree{
+                                display:block;
+                                animation:cssAnimateFadeIn $transitionSpeed ease-in-out forwards;
+                                animation-delay:$transitionSpeed;
+                            }
+                        }
+                        .contact{
                             .container{
                                 .tile{
                                     background-color:$darkblue;
@@ -635,7 +1008,7 @@
                                         }
                                     }
                                     .shape{
-                                        background-image:url('../img/shape--blue.webp');
+                                        background-image:url('../img/shape_1--blue.webp');
                                     }
                                 }
                             }
@@ -1038,7 +1411,7 @@
 
                                 p{
                                     strong{
-                                        color:$darkblue;
+                                        color:$blue;
                                         font-size:$fontsizeLarge;
                                         font-weight:$fontweightRegular;
                                     }

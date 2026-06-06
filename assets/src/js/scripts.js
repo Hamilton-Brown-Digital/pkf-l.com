@@ -115,16 +115,17 @@
 			phaseID = $(this).attr('data-phase-id');
 			$('.phaseElem').removeClass('jsPhaseActive');
 			$('#' + phaseID).addClass('jsPhaseActive');
-			$('.phaseContact').addClass('jsPhaseActive');
-			$('.phaseContact').attr('data-phase', phaseID);
-
+			$('.phaseContainer').addClass('jsPhaseActive').attr('data-phase', phaseID);
 		});
 
 		$('.resetPhase').click(function(e){
 			// e.preventDefault();
-			$('.phaseElem').removeClass('jsPhaseActive');
-			$('.phaseContact').removeClass('jsPhaseActive');
-			$('.phaseContact').attr('data-phase', '');
+			$('.phaseContainer').addClass('jsPhaseFadeOut');
+			setTimeout(function(){
+				$('.phaseContainer').removeClass('jsPhaseFadeOut');
+				$('.phaseElem').removeClass('jsPhaseActive');
+				$('.phaseContainer').removeClass('jsPhaseActive').attr('data-phase', '');
+			}, 500);
 		});
 
 

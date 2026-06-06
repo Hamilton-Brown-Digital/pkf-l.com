@@ -12,6 +12,14 @@
         opacity:1.0;
     }
 }
+@keyframes cssAnimateFadeOut {
+    from {
+        opacity:1.0;
+    }
+    to {
+        opacity:0;
+    }
+}
 @keyframes cssAnimateFadeInMoveUp {
     from {
         transform:translateY(1rem);
