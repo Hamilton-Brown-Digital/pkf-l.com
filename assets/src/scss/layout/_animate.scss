@@ -1,0 +1,297 @@
+@use '../utility/variables' as *;
+@use '../utility/mixins' as *;
+@use '../utility/animations' as *;
+
+/* -- Content
+--------------------------------- */
+
+@mixin jsAnimate_FadeIn(){
+    opacity:0;
+    @include transition(calc($transitionSpeed * 2), $transitionEaseOut, opacity);
+    &.jsFadeIn{
+        opacity:1.0;
+    }
+}
+
+@mixin jsAnimate_FadeInUp(){
+    opacity:0;
+    transform:translateY(50px);
+    @include transition(calc($transitionSpeed * 2), $transitionEaseOut, opacity, transform);
+    &.jsFadeIn{
+        transform:translateY(0px);
+        opacity:1.0;
+    }
+}
+
+#customLandingPage_AccountingSystemsCampaign{
+    opacity:0;
+    animation:cssAnimateBlurIn 1000ms ease-in-out forwards;
+    animation-delay:$transitionSpeed;
+
+
+    // Page Background
+    &::before{
+        opacity:0.4;
+        animation: cssAnimateAnimateBackgroundFadeInOut 10s ease-in-out infinite;
+    }
+
+
+    // Content
+    .customLandingPage_content{
+
+        .section--FutureReadyFinance{
+            .container{
+                .hero{
+                }
+            }
+
+            .background{
+                width:100%;
+                height:100%;
+
+                display:block;
+                position:absolute;
+                top:0px;
+                left:0px;
+                z-index:0;
+
+                mask:linear-gradient(
+                    to bottom,
+                    rgba($black, 1.0) 50%,
+                    rgba($black, 0.738) 59.5%,
+                    rgba($black, 0.541) 67%,
+                    rgba($black, 0.382) 73.5%,
+                    rgba($black, 0.278) 78.25%,
+                    rgba($black, 0.194) 82.5%,
+                    rgba($black, 0.126) 86.5%,
+                    rgba($black, 0.075) 90.1%,
+                    rgba($black, 0.042) 93.05%,
+                    rgba($black, 0.021) 95.5%,
+                    rgba($black, 0.008) 97.6%,
+                    rgba($black, 0.002) 99.1%,
+                    rgba($black, 0) 100%
+                );
+
+                img,
+                video{
+                    width:auto;
+                    width:100%;
+                    height:auto;
+                    height:100%;
+
+                    display:block;
+                    position:absolute;
+                    z-index:0;
+
+                    margin:0px;
+                    padding:0px;
+                    border:0px none;
+
+                    object-fit:cover;
+                    object-position:50% 50%;
+                }
+                video{
+                    z-index:10;
+                }
+            }
+        }
+
+        .section--Introduction{
+            .container{
+                .text{
+                    @include jsAnimate_FadeIn;
+                }
+            }
+        }
+
+        .section--WhoIsItFor{
+            .container{
+                @include jsAnimate_FadeIn;
+
+                // Blur other tiles when you hover a tile button
+                .tiles{
+                    .tile{
+                        @include transition($transitionSpeed, $transitionEaseInOut, filter, transform);
+                        filter: blur(0px);
+                        transform:scale(1.0);
+                    }
+                    &:has(.btn:hover) .tile {
+                        filter: blur(10px);
+                    }
+                    & .tile:has(.btn:hover) {
+                        filter: blur(0px);
+                        transform:scale(1.025);
+                    }
+                }
+
+                .background{
+                }
+            }
+        }
+
+        .section--Phases{
+
+            // Phases
+            .phase{
+                .at_a_glance{
+                    .container{
+                        @include jsAnimate_FadeIn;
+
+                        .list{
+                            .item{
+                                filter:blur(10px);
+                                opacity:0.25;
+                                transform:scale(1.1);
+                                @include transition(calc($transitionSpeed * 2), $transitionEaseInOut, opacity, filter, transform);
+
+                                &.jsToggleElem{
+                                    filter:blur(0px);
+                                    opacity:1.0;
+                                    transform:scale(1);
+                                }
+                            }
+                        }
+                    }
+                }
+                .callout{
+                    .tile{
+                        @include jsAnimate_FadeInUp;
+                    }
+                }
+                .wrap_up{
+                    .text{
+                        @include jsAnimate_FadeIn;
+                    }
+                }
+            }
+
+            // Contact Panel
+            .contact{
+                .tile{
+                    @include jsAnimate_FadeInUp;
+                }
+            }
+        }
+
+        .section--DecisionRoadmap{
+            .container{
+                @include jsAnimate_FadeIn;
+
+                .tile{
+                    opacity:0;
+                    @include transition(calc($transitionSpeed * 2), $transitionEaseOut, opacity);
+                }
+
+
+                &.jsFadeIn{
+                    .slide{
+                        // 1
+                        .tile{
+                            animation:cssAnimateFadeInMoveUp calc($transitionSpeed * 2) ease-out forwards;
+                        }
+
+                        // 2
+                        & + .is-selected{
+                            .tile{
+                                animation-delay:calc($transitionSpeed * 1);
+                            }
+
+                            // 3
+                            & + .slide{
+                                .tile{
+                                    animation-delay:calc($transitionSpeed * 1.5);
+                                }
+
+                                // 4
+                                & + .slide{
+                                    .tile{
+                                        animation-delay:calc($transitionSpeed * 2);
+                                    }
+
+                                    // 5
+                                    & + .slide{
+                                        .tile{
+                                            animation-delay:calc($transitionSpeed * 2.5);
+                                        }
+
+                                        // 6
+                                        & + .slide{
+                                            .tile{
+                                                animation-delay:calc($transitionSpeed * 3);
+                                            }
+
+                                            // 7
+                                            & + .slide{
+                                                .tile{
+                                                    animation-delay:calc($transitionSpeed * 3.5);
+                                                }
+
+                                                // 8
+                                                & + .slide{
+                                                    .tile{
+                                                        animation-delay:calc($transitionSpeed * 4);
+                                                    }
+
+                                                    // 9
+                                                    & + .slide{
+                                                        .tile{
+                                                            animation-delay:calc($transitionSpeed * 4.5);
+                                                        }
+
+                                                        // 10
+                                                        & + .slide{
+                                                            .tile{
+                                                                animation-delay:calc($transitionSpeed * 5);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .section--Overview{
+            .container{
+                @include jsAnimate_FadeIn;
+
+                & + .container{
+                    @include jsAnimate_FadeInUp;
+                }
+            }
+        }
+
+        .section--HowPKFCanHelp{
+            .container{
+                @include jsAnimate_FadeIn;
+
+                .list{
+                    .item{
+                        filter:blur(10px);
+                        opacity:0.25;
+                        transform:scale(1.1);
+                        @include transition(calc($transitionSpeed * 2), $transitionEaseInOut, opacity, filter, transform);
+
+                        &.jsToggleElem{
+                            filter:blur(0px);
+                            opacity:1.0;
+                            transform:scale(1);
+                        }
+                    }
+                }
+            }
+        }
+
+        .section--ContactUs{
+            .container{
+                @include jsAnimate_FadeIn;
+            }
+        }
+    }
+}

@@ -47,7 +47,6 @@
             border:0px none;
 
             opacity:0.4;
-            animation: cssAnimateBackgroundFadeInOut 5s ease-in-out infinite;
 
             content:'';
         }
@@ -95,6 +94,8 @@
 
                 // Sections
                 .section{
+                    background:$transparent;
+
                     width:100%;
                     height:auto;
 
@@ -106,9 +107,15 @@
                     padding:0px;
                     border:0px none;
 
+                    overflow:visible;
+
                     .container{
+                        background:$transparent;
+
                         position:relative;
                         z-index:10;
+
+                        overflow:visible;
 
                         @include containerWidth;
                         @include sideGutter;
@@ -166,6 +173,8 @@
                                 row-gap:2rem;
                             }
 
+                            text-align:center;
+
                             h1{
                                 color:$white;
                                 margin:1rem 0px 0px;
@@ -203,7 +212,7 @@
                                 }
                             }
 
-                            &::before{
+                            .circle{
                                 background-image:url('../img/circle_hero.webp');
                                 background-position:center;
                                 background-repeat:no-repeat;
@@ -228,7 +237,6 @@
                                 transform:translate(-50%, -50%);
 
                                 content:'';
-
                             }
                         }
                     }
@@ -311,20 +319,27 @@
                 }
 
                 .section--WhoIsItFor{
-
                     .container{
                         max-width:$medium_container;
+                        min-height:calc(100vh - 100px);
 
                         display:grid;
                         grid-template-columns:$single_column;
                         grid-auto-rows:min-content;
                         @include addElementSpace(row-gap);
 
-                        .section_intro{
+                        padding-top:50vh;
+                        padding-bottom:50vh;
+
+                        .section_intro,
+                        .section_outro{
+                            z-index:10;
                         }
 
                         .tiles{
                             display:grid;
+                            z-index:20;
+
                             grid-template-columns:$single_column;
                             @include responsive_from($md_screen){
                                 grid-template-columns:repeat(2, $single_column);
@@ -341,6 +356,8 @@
 
                             .tile{
                                 display:grid;
+                                z-index:10;
+
                                 grid-template-rows:min-content auto min-content;
                                 grid-auto-rows:min-content;
 
@@ -388,6 +405,28 @@
                                         @include btn($darkblue, $white);
                                     }
                                 }
+                            }
+                        }
+
+                        .background{
+                            background-image:url('../img/background_whoisitfor.webp');
+                            background-position:center center;
+                            background-repeat:no-repeat;
+                            background-size:contain;
+
+                            width:100%;
+                            height:auto;
+
+                            display:block;
+                            position:absolute;
+                            top:50%;
+                            left:125%;
+                            z-index:0;
+
+                            transform:translate(-50%, -50%);
+
+                            &::after{
+                                @include blankSpace(100%);
                             }
                         }
                     }
@@ -643,7 +682,8 @@
                                         grid-auto-rows:min-content;
                                         @include responsive_from($md_screen){
                                             grid-template-columns:repeat(2, minmax(0, 1fr));
-                                            grid-template-rows:min-content minmax(0, 300px);
+                                            grid-auto-rows: auto;
+                                            grid-template-rows: min-content 1fr;
                                         }
                                         position:relative;
                                         column-gap:$gutterGap;
@@ -1841,6 +1881,7 @@
                 }
 
                 .section--ContactUs{
+                    z-index:0;
 
                     .container{
                         display:grid;
@@ -1938,7 +1979,7 @@
                                             align-self:start;
                                             justify-self:stretch;
 
-                                            width:auto;
+                                            width:100%;
                                             height:auto;
 
                                             display:block;
@@ -2022,37 +2063,34 @@
                     }
 
                     .background{
-                        background-image:url('../img/background_getintouch.webp');
-                        background-position:top 25% right;
-                        background-repeat:no-repeat;
-                        background-size:contain;
-
                         width:100%;
-                        height:100%;
+                        height:200%;
 
                         display:block;
                         position:absolute;
-                        top:0px;
+                        bottom:0px;
                         right:0px;
 
                         margin:0px;
                         padding:0px;
                         border:0px none;
 
+                        overflow:visible;
+
                         mask:linear-gradient(
                             to bottom,
-                            rgba($black, 1.0) 50%,
-                            rgba($black, 0.738) 59.5%,
-                            rgba($black, 0.541) 67%,
-                            rgba($black, 0.382) 73.5%,
-                            rgba($black, 0.278) 78.25%,
-                            rgba($black, 0.194) 82.5%,
-                            rgba($black, 0.126) 86.5%,
-                            rgba($black, 0.075) 90.1%,
-                            rgba($black, 0.042) 93.05%,
-                            rgba($black, 0.021) 95.5%,
-                            rgba($black, 0.008) 97.6%,
-                            rgba($black, 0.002) 99.1%,
+                            rgba($black, 1.0) 75%,
+                            rgba($black, 0.738) 79.75%,
+                            rgba($black, 0.541) 83.5%,
+                            rgba($black, 0.382) 86.75%,
+                            rgba($black, 0.278) 89.13%,
+                            rgba($black, 0.194) 91.25%,
+                            rgba($black, 0.126) 93.25%,
+                            rgba($black, 0.075) 95.05%,
+                            rgba($black, 0.042) 96.53%,
+                            rgba($black, 0.021) 97.75%,
+                            rgba($black, 0.008) 98.8%,
+                            rgba($black, 0.002) 99.55%,
                             rgba($black, 0) 100%
                         );
 
@@ -2060,6 +2098,25 @@
                             opacity:0.25;
                             background-position:top 10% right;
                             background-size:175% auto;
+                        }
+
+                        span{
+                            background-image:url('../img/background_getintouch.webp');
+                            background-position:top 25% right;
+                            background-repeat:no-repeat;
+                            background-size:contain;
+
+                            width:100%;
+                            height:50%;
+
+                            display:block;
+                            position:absolute;
+                            bottom:0px;
+                            right:0px;
+
+                            margin:0px;
+                            padding:0px;
+                            border:0px none;
                         }
                     }
                 }

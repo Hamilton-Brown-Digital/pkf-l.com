@@ -22,7 +22,7 @@
 }
 @keyframes cssAnimateFadeInMoveUp {
     from {
-        transform:translateY(1rem);
+        transform:translateY(50px);
         opacity:0;
     }
     to {
@@ -40,18 +40,8 @@
         opacity:1.0;
     }
 }
-@keyframes cssAnimateGrowX {
-    from {
-        transform:scaleX(0);
-        opacity:0;
-    }
-    to {
-        transform: scaleX(1);
-        opacity:1.0;
-    }
-}
 @keyframes cssAnimateAnimateBackgroundFadeInOut {
     0%,
-    100%{ opacity: 0.3; }
-    50%{ opacity: 0.5; }
+    100%{ opacity: 0.4; }
+    50%{ opacity: 0.7; }
 }

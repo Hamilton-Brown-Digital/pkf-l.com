@@ -32,7 +32,6 @@
 
 	jQuery(document).ready(function($){
 
-
 	// ----- Menu
 	// ---------------------------------------------
 
@@ -128,6 +127,28 @@
 			}, 500);
 		});
 
+		// Get URL has and show selected element
+		var urlHash = window.location.hash;
+		if(urlHash == '#phase-1' || '#phase-2' || '#phase-3'){
+			urlHash = urlHash.replace('#','');
+
+			// Get the data-phase-id from the relevant showPhase button
+			phaseID = $('.showPhase[href="#' + urlHash + '"]').attr('data-phase-id');
+
+			// Show correct element
+			$('.phaseElem').removeClass('jsPhaseActive');
+			$('#' + phaseID).addClass('jsPhaseActive');
+			$('.phaseContainer').addClass('jsPhaseActive').attr('data-phase', phaseID);
+
+			// Scroll to the correct element
+			setTimeout(function(){
+				$('html, body').animate({
+					scrollTop: $('#' + urlHash).offset().top
+				});
+				console.log('scrolly: ' + '#' + urlHash);
+			}, 2000);
+		}
+
 
 	// ----- Carousel
 	// ---------------------------------------------
@@ -167,6 +188,220 @@
 				}, 1000);
 			});
 		}
+
+
+	// ----- ScrollMagic
+	// ---------------------------------------------
+
+		var ScrollMagicController = new ScrollMagic.Controller();
+
+		var headerElem = $('header');
+		var heightHeader = headerElem.outerHeight(true);
+
+
+		// Generic: fade in sections when the trigger reaches 75% unless specified
+		function fnScrollMagicFadeIn(){
+			if( $('.animateFadeIn').length ){
+				$('.animateFadeIn').each(function(i) {
+					triggerHook = $(this).attr('data-trigger');
+					if(!triggerHook){
+						triggerHook = '0.75';
+					}
+					triggerOffset = $(this).attr('data-offset');
+					if(!triggerOffset){
+						triggerOffset = 0;
+					}
+
+					new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:triggerHook,
+						offset:triggerOffset,
+					})
+					.setClassToggle(this, 'jsFadeIn')
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'fnScrollMagicFadeIn'
+					// })
+				});
+			}
+		}
+		fnScrollMagicFadeIn();
+
+		// Generic: trigger class on elem when it reaches 75% (compensate for 1rem)
+		function fnScrollMagicElemTrigger(){
+
+			if( $('.elemTrigger').length ){
+				$('.elemTrigger').each(function(i) {
+					heightElement = $(this).outerHeight() + 40;
+					new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:0.75,
+						offset:0,
+						// duration:heightElement,
+					})
+					.setClassToggle(this, 'jsToggleElem')
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'elemTrigger'
+					// })
+				});
+			}
+		}
+		fnScrollMagicElemTrigger();
+
+		// Hero
+		function fnScrollMagicHeroFade(){
+			if( $('.heroContent').length ){
+				$('.heroContent').each(function(i) {
+					var contentContainer = $(this);
+					var contentElem = contentContainer.find('.hero');
+					var heightContainer = contentContainer.outerHeight(true);
+
+					contentElem.attr('style', 'filter:blur(0px)');
+
+					new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:0,
+						offset:-heightHeader,
+						duration:heightContainer - heightHeader,
+					})
+					.setTween(contentElem, {y: '50%', opacity:0, filter:'blur(40px)', scale:1.2, ease: 'power2.in'})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'fnScrollMagicHeroFade'
+					// })
+				});
+			}
+		}
+		fnScrollMagicHeroFade();
+
+		// Who Is It For?
+		function fnScrollMagicWhoIsItFor(){
+
+			if( $('.whoisitforContent').length ){
+				$('.whoisitforContent').each(function(i) {
+					var contentContainer = $(this);
+					var backgroundElem = contentContainer.find('.background');
+					var heightContainer = contentContainer.outerHeight(true);
+
+					// Background
+					new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:100,
+						offset:0,
+						duration:heightContainer * 1.5,
+					})
+					.setTween(backgroundElem, {rotation: 20})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'fnScrollMagicWhoIsItFor'
+					// })
+				});
+			}
+		}
+		fnScrollMagicWhoIsItFor();
+
+		// Phase
+		// function fnScrollMagicPhase(){
+
+		// 	if( $('.phaseElem .title').length ){
+		// 		$('.phaseElem .title').each(function(i) {
+		// 			var contentContainer = $(this);
+		// 			var backgroundElem_title = contentContainer.find('.title .background');
+		// 			// var backgroundElem_callout = contentContainer.find('.callout .background');
+		// 			var heightContainer = contentContainer.outerHeight(true);
+
+		// 			backgroundElem_title.attr('style', 'bottom:-5%;');
+
+		// 			// Title: Background
+		// 			new ScrollMagic.Scene({
+		// 				triggerElement: this,
+		// 				triggerHook:0,
+		// 				offset:-heightContainer,
+		// 				duration:heightContainer * 2,
+		// 			})
+		// 			.setTween(backgroundElem_title, {y:'-150%', ease: Linear.easeOut})
+		// 			.addTo(ScrollMagicController)
+		// 			.addIndicators({
+		// 				name: 'fnScrollMagicPhase'
+		// 			})
+		// 		});
+		// 	}
+		// }
+		// fnScrollMagicPhase();
+
+		// Contact Us
+		function fnScrollMagicContactUs(){
+
+			if( $('.contactusContent').length ){
+				$('.contactusContent').each(function(i) {
+					var contentContainer = $(this);
+					var backgroundElem = contentContainer.find('.background span');
+					var heightContainer = contentContainer.outerHeight(true);
+
+					backgroundElem.attr('style', 'bottom:-5%;');
+
+					// Background
+					new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:0,
+						offset:-heightContainer,
+						duration:heightContainer * 2,
+					})
+					.setTween(backgroundElem, {y:'-20%', ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'contactusContent'
+					// })
+				});
+			}
+		}
+		fnScrollMagicContactUs();
+
+
+		// Parallax Images
+		function fnScrollMagicParallaxImage(){
+			if( $('.parallaxImage').length ){
+				$('.parallaxImage').each(function(i) {
+
+					var heightWindow = $(window).height();
+					var heightElement = $(this).outerHeight(true);
+					var targetElement = $(this).find('img');
+					triggerHook = $(this).attr('data-trigger');
+					if(!triggerHook){
+						triggerHook = '1.0';
+					}
+					triggerOffset = $(this).attr('data-offset');
+					if(!triggerOffset){
+						triggerOffset = 0;
+					}
+					scrollSpeed = $(this).attr('data-speed');
+					if(!scrollSpeed){
+						calculatedScrollSpeed = '-150%';
+					}
+                    else{
+                        calculatedScrollSpeed = scrollSpeed * -100 + '%';
+                    }
+
+					var scene = new ScrollMagic.Scene({
+						triggerElement: this,
+						// duration: (heightWindow / scrollSpeed) + heightElement,
+						duration: heightWindow + heightElement,
+						// duration: heightWindow / scrollSpeed,
+						triggerHook: triggerHook,
+						offset:triggerOffset,
+						reverse: true
+					})
+					.setTween(targetElement, {y: calculatedScrollSpeed, ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'parallax ' + $(this).attr('id')
+					// })
+				});
+
+			}
+		}
+		fnScrollMagicParallaxImage();
 
 
 	});
