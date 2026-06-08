@@ -35,6 +35,41 @@
         padding:0px !important;
     }
 
+
+    // Remove space on top of footer
     .site-footer{
         margin-top:0px !important;
+    }
+
+    // Compensate for site header on smaller screens
+    @include responsive_to(1024px){
+        .header-placeholder{
+            &,
+            &.active{
+                display:none !important;
+            }
+        }
+        .site-header{
+            &,
+            &.fixed{
+                position:sticky !important;
+                color:red !important;
+            }
+        }
+    }
+    #customLandingPage_AccountingSystemsCampaign{
+        .customLandingPage_navigation{
+            @include responsive_to(820px){
+                top:107px;
+            }
+            @include responsive_from(821px, 991px){
+                top:140px;
+            }
+            @include responsive_from(960px, 991px){
+                top:153px;
+            }
+            @include responsive_from(991px, 1024px){
+                top:96px;
+            }
+        }
     }

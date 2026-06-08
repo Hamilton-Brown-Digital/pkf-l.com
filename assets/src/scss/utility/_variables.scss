@@ -24,8 +24,10 @@
 	$menu_breakpoint:880px;
 
 	// Max widths
-	$small_container:1470px;
+	$small_container:870px;
+	$medium_container:1470px;
 	$large_container:1770px;
+
 	$single_column:minmax(0, 1fr);
 
 	// Spacing
@@ -53,7 +55,8 @@
 	$white:#FFFFFF;
 	$black:#000000;
     $darkgrey:#5A5A5A;
-	$mediumgrey:#7B7F84;
+	$darkmediumgrey:#7B7F84;
+	$lightmediumgrey:#E8E8E8;
 	$lightgrey:#FAFAFA;
 
     $blue:#0F3780; // PKF Blue

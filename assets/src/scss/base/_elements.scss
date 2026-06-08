@@ -80,7 +80,8 @@
     h4,
     h5,
     h6{
-        font-size:1.7777777778em;
+        // font-size:1.7777777778em;
+        font-size:1.111111rem;
     }
 
 
@@ -312,7 +313,7 @@
     hr{
         width:100%;
         border:0px;
-        border-top:0.05rem solid $black;
+        border-top:0.05rem solid $darkmediumgrey;
         display:inline-block;
         vertical-align:top;
 

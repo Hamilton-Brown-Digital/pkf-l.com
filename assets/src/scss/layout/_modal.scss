@@ -23,8 +23,8 @@
 
         align-content:center;
         align-items:center;
-        justify-content:center;
-        justify-items:center;
+        justify-content:stretch;
+        justify-items:stretch;
 
         margin:0px;
         padding:0px;
@@ -38,12 +38,15 @@
 
         // Content
         .tile{
+            max-width:$md_screen;
             z-index:10;
 
             display:grid;
             grid-template-columns:$single_column;
             grid-auto-rows:min-content;
             row-gap:1.5rem;
+
+            margin:0px auto;
 
             .close{
                 align-self:start;
@@ -55,7 +58,9 @@
                 height:2.5rem;
 
                 display:block;
-                position:relative;
+                position:absolute;
+                top:30px;
+                right:30px;
 
                 text-indent:-9999px;
 
@@ -104,6 +109,17 @@
 
             .intro{
                 text-align:center;
+
+                @include responsive_to($breakpoint){
+                    text-align:left;
+
+                    h2{
+                        padding-right:70px;
+                        @include responsive_to($xxs_screen){
+                            font-size:$fontsizeLarge;
+                        }
+                    }
+                }
             }
         }
 

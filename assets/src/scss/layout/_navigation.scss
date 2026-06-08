@@ -278,4 +278,20 @@
             }
         }
     }
+
+
+    .customLandingPage_navigation{
+        @include responsive_to(820px){
+            top:107px;
+        }
+        @include responsive_from(821px, 991px){
+            top:140px;
+        }
+        @include responsive_from(960px, 991px){
+            top:153px;
+        }
+        @include responsive_from(991px, 1024px){
+            top:96px;
+        }
+    }
 }
