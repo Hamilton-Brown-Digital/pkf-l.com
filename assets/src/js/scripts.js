@@ -129,7 +129,7 @@
 
 		// Get URL has and show selected element
 		var urlHash = window.location.hash;
-		if(urlHash == '#phase-1' || '#phase-2' || '#phase-3'){
+		if(urlHash == '#phase-1' || urlHash == '#phase-2' || urlHash == '#phase-3'){
 			urlHash = urlHash.replace('#','');
 
 			// Get the data-phase-id from the relevant showPhase button
