@@ -147,6 +147,10 @@
                     }
                 }
 
+                .background{
+                    overflow:visible;
+                }
+
 
             // -- Specific ----------
 
@@ -333,7 +337,7 @@
                         @include addElementSpace(row-gap);
 
                         padding-top:50vh;
-                        padding-bottom:50vh;
+                        // padding-bottom:50vh;
 
                         .section_intro,
                         .section_outro{
@@ -413,11 +417,6 @@
                         }
 
                         .background{
-                            background-image:url('../img/background_whoisitfor.webp');
-                            background-position:center center;
-                            background-repeat:no-repeat;
-                            background-size:contain;
-
                             width:100%;
                             height:auto;
 
@@ -429,8 +428,25 @@
 
                             transform:translate(-50%, -50%);
 
-                            &::after{
-                                @include blankSpace(100%);
+                            .image{
+                                background-image:url('../img/background_whoisitfor.webp');
+                                background-position:center center;
+                                background-repeat:no-repeat;
+                                background-size:contain;
+
+                                width:100%;
+                                height:auto;
+
+                                display:block;
+                                position:relative;
+
+                                margin:0px;
+                                padding:0px;
+                                border:0px none;
+
+                                &::after{
+                                    @include blankSpace(100%);
+                                }
                             }
                         }
                     }
@@ -528,24 +544,36 @@
                             }
 
                             .background{
-                                background-position:center top;
-                                background-repeat:no-repeat;
-                                background-size:contain;
-
                                 width:100%;
                                 min-width:$md_screen;
                                 height:auto;
 
                                 display:block;
                                 position:absolute;
-                                top:45%;
+                                top:20%;
                                 left:50%;
                                 z-index:0;
 
                                 transform:translate(-50%, -50%);
 
-                                &::after{
-                                    @include blankSpace(48.44%);
+                                .image{
+                                    background-position:center top;
+                                    background-repeat:no-repeat;
+                                    background-size:contain;
+
+                                    width:100%;
+                                    height:auto;
+
+                                    display:block;
+                                    position:relative;
+
+                                    margin:0px;
+                                    padding:0px;
+                                    border:0px none;
+
+                                    &::after{
+                                        @include blankSpace(48.44%);
+                                    }
                                 }
                             }
                         }
@@ -557,6 +585,8 @@
                             @include removeSectionSpace(margin-top);
 
                             text-align:center;
+
+                            @include addSectionSpace(padding-bottom);
 
                             .container{
                                 display:grid;
@@ -850,69 +880,117 @@
                             }
 
                             .background{
-                                background-position:center top;
-                                background-repeat:no-repeat;
-                                background-size:contain;
-
                                 width:100%;
                                 min-width:$md_screen;
                                 height:auto;
 
                                 display:block;
                                 position:absolute;
-                                top:35%;
+                                top:25%;
                                 left:50%;
                                 z-index:0;
 
                                 transform:translate(-50%, -50%);
 
-                                mask:linear-gradient(
-                                    to bottom,
-                                    rgba($black, 0) 0%,
-                                    rgba($black, 1.0) 20%,
-                                    rgba($black, 1.0) 50%,
-                                    rgba($black, 1.0) 80%,
-                                    rgba($black, 0) 100%
-                                );
+                                .image{
+                                    background-position:center top;
+                                    background-repeat:no-repeat;
+                                    background-size:contain;
 
-                                &::after{
-                                    @include blankSpace(69.17%);
+                                    width:100%;
+                                    height:auto;
+
+                                    display:block;
+                                    position:relative;
+
+                                    margin:0px;
+                                    padding:0px;
+                                    border:0px none;
+
+                                    mask:linear-gradient(
+                                        to bottom,
+                                        rgba($black, 0) 0%,
+                                        rgba($black, 1.0) 20%,
+                                        rgba($black, 1.0) 50%,
+                                        rgba($black, 1.0) 80%,
+                                        rgba($black, 0) 100%
+                                    );
+
+                                    &::after{
+                                        @include blankSpace(69.17%);
+                                    }
                                 }
                             }
                         }
 
                         .wrap_up{
                             position:relative;
-                            z-index:30;
+                            z-index:40;
 
                             text-align:center;
 
                             .container{
                                 max-width:$medium_container;
+
+                                .text{
+                                    // display:block;
+                                    // position:relative;
+
+                                    // @include addSectionSpace(padding-top);
+                                    // @include addSectionSpace(padding-bottom);
+
+                                    font-size:$fontsizeLarge;
+                                    @include responsive_from($xs_screen){
+                                        font-size:$fontsizeVeryLarge;
+                                    }
+                                    @include responsive_from($lg_screen){
+                                        font-size:$fontsizeExtraLarge;
+                                    }
+                                    text-align:center;
+
+                                    & *{
+                                        font-family:$fontfamilyPKF;
+                                    }
+                                }
                             }
 
-                            .text{
-                                font-size:$fontsizeLarge;
-                                @include responsive_from($xs_screen){
-                                    font-size:$fontsizeVeryLarge;
-                                }
-                                @include responsive_from($lg_screen){
-                                    font-size:$fontsizeExtraLarge;
-                                }
-                                text-align:center;
+                            &::after{
+                                background:linear-gradient(
+                                    73deg,
+                                    #C6C6C6 9.62%,
+                                    #C7BEC0 39.42%,
+                                    #F3D5E2 61.06%,
+                                    #B2BED7 81.73%,
+                                    #DEDFE7 100%
+                                );
 
-                                & *{
-                                    font-family:$fontfamilyPKF;
-                                }
+                                width:100%;
+                                height:100%;
+
+                                display:block;
+                                position:absolute;
+                                top:0%;
+                                left:0px;
+                                z-index:0;
+
+                                opacity:0.75;
+
+                                mask:linear-gradient(
+                                    to bottom,
+                                    rgba($black, 0) 0%,
+                                    rgba($black, 1.0) 30%,
+                                    rgba($black, 1.0) 50%,
+                                    rgba($black, 1.0) 70%,
+                                    rgba($black, 0) 100%
+                                );
+
+                                content:'';
                             }
                         }
 
                         .shape01,
                         .shape02,
                         .shape03{
-                            background-repeat:no-repeat;
-                            background-size:cover;
-
                             width:auto;
                             height:auto;
 
@@ -920,30 +998,39 @@
                             position:absolute;
                             z-index:10;
 
-                            &::after{
-                                @include blankSpace(100%);
-                            }
+                            transform:translateX(-50%) translateY(-50%);
 
+                            .image{
+                                background-repeat:no-repeat;
+                                background-size:cover;
+
+                                width:auto;
+                                height:auto;
+
+                                display:block;
+                                position:relative;
+
+                                &::after{
+                                    @include blankSpace(100%);
+                                }
+                            }
                             &.shape01{
                                 width:50%;
                                 min-width:475px;
                                 left:5%;
-                                top:75%;
-                                transform:translateX(-50%) translateY(-50%);
+                                top:100%;
                             }
                             &.shape02{
-                                width:25%;
+                                width:40%;
                                 min-width:247.5px;
-                                left:95%;
-                                top:50%;
-                                transform:translateX(-50%) translateY(-50%);
+                                left:90%;
+                                top:40%;
                             }
                             &.shape03{
                                 width:15%;
                                 min-width:148.5px;
                                 left:100%;
-                                top:50%;
-                                transform:translateX(-50%) translateY(-50%);
+                                top:10%;
                             }
                         }
 
@@ -959,13 +1046,19 @@
                             }
 
                             .shape01{
-                                background-image:url('../img/shape_1--purple.webp');
+                                .image{
+                                    background-image:url('../img/shape_1--purple.webp');
+                                }
                             }
                             .shape02{
-                                background-image:url('../img/shape_2--purple.webp');
+                                .image{
+                                    background-image:url('../img/shape_2--purple.webp');
+                                }
                             }
                             .shape03{
-                                background-image:url('../img/shape_3--purple.webp');
+                                .image{
+                                    background-image:url('../img/shape_3--purple.webp');
+                                }
                             }
 
                             .title{
@@ -975,7 +1068,9 @@
                                     }
                                 }
                                 .background{
-                                    background-image:url('../img/background_top--purple.webp');
+                                    .image{
+                                        background-image:url('../img/background_top--purple.webp');
+                                    }
                                 }
                             }
 
@@ -988,7 +1083,9 @@
                                     }
                                 }
                                 .background{
-                                    background-image:url('../img/background_middle--purple.webp');
+                                    .image{
+                                        background-image:url('../img/background_middle--purple.webp');
+                                    }
                                 }
                             }
 
@@ -1012,13 +1109,19 @@
                             }
 
                             .shape01{
-                                background-image:url('../img/shape_1--pink.webp');
+                                .image{
+                                    background-image:url('../img/shape_1--pink.webp');
+                                }
                             }
                             .shape02{
-                                background-image:url('../img/shape_2--pink.webp');
+                                .image{
+                                    background-image:url('../img/shape_2--pink.webp');
+                                }
                             }
                             .shape03{
-                                background-image:url('../img/shape_3--pink.webp');
+                                .image{
+                                    background-image:url('../img/shape_3--pink.webp');
+                                }
                             }
 
                             .title{
@@ -1028,7 +1131,9 @@
                                     }
                                 }
                                 .background{
-                                    background-image:url('../img/background_top--pink.webp');
+                                    .image{
+                                        background-image:url('../img/background_top--pink.webp');
+                                    }
                                 }
                             }
 
@@ -1041,7 +1146,9 @@
                                     }
                                 }
                                 .background{
-                                    background-image:url('../img/background_middle--pink.webp');
+                                    .image{
+                                        background-image:url('../img/background_middle--pink.webp');
+                                    }
                                 }
                             }
                         }
@@ -1057,13 +1164,19 @@
                             }
 
                             .shape01{
-                                background-image:url('../img/shape_1--blue.webp');
+                                .image{
+                                    background-image:url('../img/shape_1--blue.webp');
+                                }
                             }
                             .shape02{
-                                background-image:url('../img/shape_2--blue.webp');
+                                .image{
+                                    background-image:url('../img/shape_2--blue.webp');
+                                }
                             }
                             .shape03{
-                                background-image:url('../img/shape_3--blue.webp');
+                                .image{
+                                    background-image:url('../img/shape_3--blue.webp');
+                                }
                             }
 
                             .title{
@@ -1073,7 +1186,9 @@
                                     }
                                 }
                                 .background{
-                                    background-image:url('../img/background_top--blue.webp');
+                                    .image{
+                                        background-image:url('../img/background_top--blue.webp');
+                                    }
                                 }
                             }
 
@@ -1086,7 +1201,9 @@
                                     }
                                 }
                                 .background{
-                                    background-image:url('../img/background_middle--blue.webp');
+                                    .image{
+                                        background-image:url('../img/background_middle--blue.webp');
+                                    }
                                 }
                             }
                         }
@@ -1224,21 +1341,32 @@
                         }
 
                         .background{
-                            background-position:center top;
-                            background-repeat:no-repeat;
-                            background-size:contain;
-
                             width:100%;
                             min-width:$md_screen;
                             height:auto;
 
                             display:block;
                             position:absolute;
-                            top:40%;
+                            top:25%;
                             left:50%;
                             z-index:0;
 
                             transform:translate(-50%, -50%);
+
+                            .image{
+                                background-position:center top;
+                                background-repeat:no-repeat;
+                                background-size:contain;
+
+                                width:100%;
+                                height:auto;
+
+                                display:block;
+                                position:relative;
+
+                                margin:0px;
+                                padding:0px;
+                                border:0px none;
 
                                 mask:linear-gradient(
                                     to bottom,
@@ -1249,8 +1377,9 @@
                                     rgba($black, 1.0) 100%
                                 );
 
-                            &::after{
-                                @include blankSpace(47.92%);
+                                &::after{
+                                    @include blankSpace(47.92%);
+                                }
                             }
                         }
                     }
@@ -1280,7 +1409,9 @@
                                 }
                             }
                             .background{
-                                background-image:url('../img/background_bottom--purple.webp');
+                                .image{
+                                    background-image:url('../img/background_bottom--purple.webp');
+                                }
                             }
                         }
                     }
@@ -1309,7 +1440,9 @@
                                 }
                             }
                             .background{
-                                background-image:url('../img/background_bottom--pink.webp');
+                                .image{
+                                    background-image:url('../img/background_bottom--pink.webp');
+                                }
                             }
                         }
                     }
@@ -1338,7 +1471,9 @@
                                 }
                             }
                             .background{
-                                background-image:url('../img/background_bottom--blue.webp');
+                                .image{
+                                    background-image:url('../img/background_bottom--blue.webp');
+                                }
                             }
                         }
                     }

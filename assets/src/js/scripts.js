@@ -115,6 +115,14 @@
 			$('.phaseElem').removeClass('jsPhaseActive');
 			$('#' + phaseID).addClass('jsPhaseActive');
 			$('.phaseContainer').addClass('jsPhaseActive').attr('data-phase', phaseID);
+
+			// Reset ScrollMagic scenes on click
+			$.each(arrScrollMagicResetScenes, function(index, scene) {
+				scene.destroy(true);
+			});
+			arrScrollMagicResetScenes = [];
+			fnScrollMagicPhase();
+			ScrollMagicController.update(true);
 		});
 
 		$('.resetPhase').click(function(e){
@@ -125,6 +133,12 @@
 				$('.phaseElem').removeClass('jsPhaseActive');
 				$('.phaseContainer').removeClass('jsPhaseActive').attr('data-phase', '');
 			}, 500);
+
+			// Remove unused ScrollMagic scenes on click
+			$.each(arrScrollMagicResetScenes, function(index, scene) {
+				scene.destroy(true);
+			});
+			arrScrollMagicResetScenes = [];
 		});
 
 		// Get URL has and show selected element
@@ -145,7 +159,7 @@
 				$('html, body').animate({
 					scrollTop: $('#' + urlHash).offset().top
 				});
-				console.log('scrolly: ' + '#' + urlHash);
+				// console.log('scrolly: ' + '#' + urlHash);
 			}, 2000);
 		}
 
@@ -197,7 +211,12 @@
 
 		var headerElem = $('header');
 		var heightHeader = headerElem.outerHeight(true);
+		var heightViewport = $(window).height();
 
+		// Array to be used for reset states
+		var arrScrollMagicResetScenes = [];
+
+		// --- ANIMATIONS ------
 
 		// Generic: fade in sections when the trigger reaches 75% unless specified
 		function fnScrollMagicFadeIn(){
@@ -212,7 +231,7 @@
 						triggerOffset = 0;
 					}
 
-					new ScrollMagic.Scene({
+					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:triggerHook,
 						offset:triggerOffset,
@@ -233,7 +252,7 @@
 			if( $('.elemTrigger').length ){
 				$('.elemTrigger').each(function(i) {
 					heightElement = $(this).outerHeight() + 40;
-					new ScrollMagic.Scene({
+					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:0.75,
 						offset:0,
@@ -259,7 +278,7 @@
 
 					contentElem.attr('style', 'filter:blur(0px)');
 
-					new ScrollMagic.Scene({
+					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:0,
 						offset:-heightHeader,
@@ -285,7 +304,7 @@
 					var heightContainer = contentContainer.outerHeight(true);
 
 					// Background
-					new ScrollMagic.Scene({
+					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:100,
 						offset:0,
@@ -302,33 +321,98 @@
 		fnScrollMagicWhoIsItFor();
 
 		// Phase
-		// function fnScrollMagicPhase(){
+		function fnScrollMagicPhase(){
 
-		// 	if( $('.phaseElem .title').length ){
-		// 		$('.phaseElem .title').each(function(i) {
-		// 			var contentContainer = $(this);
-		// 			var backgroundElem_title = contentContainer.find('.title .background');
-		// 			// var backgroundElem_callout = contentContainer.find('.callout .background');
-		// 			var heightContainer = contentContainer.outerHeight(true);
+			if( $('.jsPhaseActive .phaseElemBackground').length ){
+				$('.jsPhaseActive .phaseElemBackground').each(function(i) {
+					var contentContainer = $(this);
+					var backgroundElem = contentContainer.find('.image');
+					var heightContainer = contentContainer.outerHeight(true);
 
-		// 			backgroundElem_title.attr('style', 'bottom:-5%;');
+					// Title: Background
+					var scene = new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:1.0,
+						offset:0,
+						duration:heightViewport * 2,
+					})
+					.setTween(backgroundElem, {y:'35%', ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'fnScrollMagicPhase'
+					// })
 
-		// 			// Title: Background
-		// 			new ScrollMagic.Scene({
-		// 				triggerElement: this,
-		// 				triggerHook:0,
-		// 				offset:-heightContainer,
-		// 				duration:heightContainer * 2,
-		// 			})
-		// 			.setTween(backgroundElem_title, {y:'-150%', ease: Linear.easeOut})
-		// 			.addTo(ScrollMagicController)
-		// 			.addIndicators({
-		// 				name: 'fnScrollMagicPhase'
-		// 			})
-		// 		});
-		// 	}
-		// }
-		// fnScrollMagicPhase();
+            		arrScrollMagicResetScenes.push(scene); // Push each scene into the array for resets
+				});
+			}
+
+			if( $('.jsPhaseActive .phaseShape01').length ){
+				$('.jsPhaseActive .phaseShape01').each(function(i) {
+					var contentContainer = $(this);
+					var backgroundElem = contentContainer.find('.image');
+					var heightContainer = contentContainer.outerHeight(true);
+
+					// Title: Background
+					var scene = new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:1.0,
+						offset:0,
+						duration:heightViewport + (heightContainer * 2),
+					})
+					.setTween(backgroundElem, {y:'-50%', ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'phaseShape01'
+					// })
+            		arrScrollMagicResetScenes.push(scene); // Push each scene into the array for resets
+				});
+			}
+
+			if( $('.jsPhaseActive .phaseShape02').length ){
+				$('.jsPhaseActive .phaseShape02').each(function(i) {
+					var contentContainer = $(this);
+					var backgroundElem = contentContainer.find('.image');
+					var heightContainer = contentContainer.outerHeight(true);
+
+					// Title: Background
+					var scene = new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:1.0,
+						offset:0,
+						duration:heightViewport + (heightContainer * 2),
+					})
+					.setTween(backgroundElem, {y:'25%', ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'phaseShape02'
+					// })
+            		arrScrollMagicResetScenes.push(scene); // Push each scene into the array for resets
+				});
+			}
+
+			if( $('.jsPhaseActive .phaseShape03').length ){
+				$('.jsPhaseActive .phaseShape03').each(function(i) {
+					var contentContainer = $(this);
+					var backgroundElem = contentContainer.find('.image');
+					var heightContainer = contentContainer.outerHeight(true);
+
+					// Title: Background
+					var scene = new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:1.0,
+						offset:0,
+						duration:heightViewport + (heightContainer * 2),
+					})
+					.setTween(backgroundElem, {y:'85%', ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'phaseShape03'
+					// })
+            		arrScrollMagicResetScenes.push(scene); // Push each scene into the array for resets
+				});
+			}
+		}
+		fnScrollMagicPhase();
 
 		// Contact Us
 		function fnScrollMagicContactUs(){
@@ -342,7 +426,7 @@
 					backgroundElem.attr('style', 'bottom:-5%;');
 
 					// Background
-					new ScrollMagic.Scene({
+					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:0,
 						offset:-heightContainer,
@@ -402,6 +486,5 @@
 			}
 		}
 		fnScrollMagicParallaxImage();
-
 
 	});
