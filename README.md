@@ -10,7 +10,8 @@ This theme was developed in _Visual Studio Code_ with the following extensions:
 
 - SASS (https://sass-lang.com/)
 - jQuery (https://jquery.com/)
-- ScrollMagic.js (https://scrollmagic.io/)
+- ScrollMagic (https://scrollmagic.io/)
+- Flickity v2 (https://flickity.metafizzy.co/)
 
 
 ## Imported Scripts
