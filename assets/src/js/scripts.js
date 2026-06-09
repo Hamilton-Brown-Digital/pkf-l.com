@@ -95,13 +95,16 @@
 
 		$('.showModal').click(function(e){
 			e.preventDefault();
-			$('body').addClass('jsModalActive');
+			var scrollY = window.scrollY;
+			$('body').addClass('jsModalActive').css('top', -scrollY + 'px');
 			$('.customModal').addClass('jsModalActive');
 		});
 
 		$('.closeModal').click(function(e){
 			e.preventDefault();
-			$('body').removeClass('jsModalActive');
+			var scrollY = parseInt($('body').css('top') || '0') * -1;
+			$('body').removeClass('jsModalActive').css('top', '');
+			window.scrollTo(0, scrollY);
 			$('.customModal').removeClass('jsModalActive');
 		});
 
