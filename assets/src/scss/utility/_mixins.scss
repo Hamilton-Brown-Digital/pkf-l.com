@@ -319,7 +319,9 @@
         position:relative;
 
         color:$color;
+        font-family:$fontfamilyInter;
         font-size:inherit;
+        font-weight:$fontweightRegular;
         line-height:1.0;
         text-align:center;
         white-space:nowrap;
