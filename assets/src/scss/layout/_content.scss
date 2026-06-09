@@ -327,6 +327,7 @@
                 }
 
                 .section--WhoIsItFor{
+                    z-index:20;
                     .container{
                         max-width:$medium_container;
                         min-height:calc(100vh - 100px);
@@ -453,7 +454,7 @@
                 }
 
                 .section--Phases{
-                    // display:none;
+                    z-index:10;
                     @include hidden;
 
                     &.jsPhaseActive{
@@ -467,6 +468,7 @@
 
                     // Phases
                     .phase{
+                        z-index:20;
                         display:none;
                         opacity:0;
 
@@ -988,6 +990,180 @@
                             }
                         }
 
+                        .decision_roadmap{
+                            position:relative;
+                            z-index:40;
+
+                            @include addSectionSpace(padding-top);
+
+                            .container{
+                                display:grid;
+                                grid-template-columns:$single_column;
+                                grid-auto-rows:min-content;
+                                @include addElementSpace(row-gap);
+
+                                .section_intro{
+                                    text-align:left;
+                                }
+
+                                .carousel{
+                                    width:100%;
+                                    height:auto;
+
+                                    display:block;
+                                    position:relative;
+
+                                    margin:0px;
+                                    padding:0px;
+                                    border:0px none;
+
+                                    .slider{
+
+                                        width:100%;
+                                        height:auto;
+
+                                        display:block;
+                                        position:relative;
+
+                                        margin:1rem 0px;
+                                        padding:0px 0px 70px;
+                                        @include responsive_from($sm_screen){
+                                            padding:0px 0px 0px 150px;
+                                        }
+                                        border:0px none;
+
+                                        .flickity-viewport{
+                                            width:100%;
+
+                                            display:block;
+                                            position:relative;
+
+                                            overflow:visible;
+
+                                            .flickity-slider{
+                                                height:100%;
+                                            }
+
+                                            .slide{
+                                                width:100%;
+                                                @include responsive_from($md_screen){
+                                                    width:50%;
+                                                }
+                                                @include responsive_from($xl_screen){
+                                                    width:33.3333%;
+                                                }
+                                                min-height:100%;
+                                                display:grid;
+                                                align-items:stretch;
+                                                padding:0px $gutterGap 0px 0px;
+
+                                                opacity:0.25;
+                                                transition:opacity $easeInOut;
+
+                                                &.is-selected{
+                                                    opacity:1;
+
+
+                                                    & ~ .slide{
+                                                        opacity:1;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                        .flickity-button{
+                                            background-color:$transparent;
+
+                                            width:45px;
+                                            height:45px;
+
+                                            display:block;
+                                            position:absolute;
+                                            top:unset;
+                                            right:unset;
+                                            bottom:0px;
+                                            left:0px;
+                                            z-index:10;
+
+                                            margin:0px;
+                                            padding:0px;
+                                            border:0px none;
+
+                                            margin:0px;
+                                            padding:0px;
+                                            border:2px solid $darkblue;
+
+                                            transform:unset;
+                                            @include transition($transitionSpeed, $transitionEaseInOut, background-color, border-color);
+
+                                            &::before,
+                                            &::after{
+                                                background-color:$darkblue;
+
+                                                width:30%;
+                                                height:2px;
+
+                                                display:block;
+                                                position:absolute;
+                                                top:50%;
+                                                left:49%;
+
+                                                margin:0px;
+                                                padding:0px;
+                                                border:0px none;
+
+                                                transform:translate(-50%, -50%) rotate(45deg);
+                                                transform-origin:center right;
+
+                                                @include transition($transitionSpeed, $transitionEaseInOut, background-color);
+
+                                                content:'';
+                                            }
+                                            &::after{
+                                                transform:translate(-50%, -50%) rotate(-45deg);
+                                            }
+
+                                            svg{
+                                                display:none;
+                                            }
+
+                                            &.previous{
+                                                left:0px;
+                                                transform:rotate(180deg);
+                                            }
+                                            &.next{
+                                                left:60px;
+                                            }
+
+                                            &:hover{
+                                                background-color:$blue;
+                                                border-color:$blue;
+                                                opacity:1.0;
+
+                                                &::before,
+                                                &::after{
+                                                    background-color:$white;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .tile{
+                                    h3{
+                                        span{
+                                            display:block;
+                                            position:relative;
+
+                                            font-size:$fontsizeLarge;
+
+                                            margin:0px 0px 0.5rem;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
                         .shape01,
                         .shape02,
                         .shape03{
@@ -1089,6 +1265,29 @@
                                 }
                             }
 
+                            .decision_roadmap{
+                                .container{
+                                    .carousel{
+                                        .slider{
+                                            .flickity-button{
+                                                border-color:$purple;
+                                                &::before,
+                                                &::after{
+                                                    background-color:$purple;
+                                                }
+                                                &:hover{
+                                                    background-color:$purple;
+                                                    &::before,
+                                                    &::after{
+                                                        background-color:$white;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
                             .wrap_up{
                                 strong{
                                     @include responsive_from($breakpoint){
@@ -1151,6 +1350,29 @@
                                     }
                                 }
                             }
+
+                            .decision_roadmap{
+                                .container{
+                                    .carousel{
+                                        .slider{
+                                            .flickity-button{
+                                                border-color:$pink;
+                                                &::before,
+                                                &::after{
+                                                    background-color:$pink;
+                                                }
+                                                &:hover{
+                                                    background-color:$pink;
+                                                    &::before,
+                                                    &::after{
+                                                        background-color:$white;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
 
                         &#PhaseThree{
@@ -1199,10 +1421,54 @@
                                             background-image:url('../img/shape_1--blue.webp');
                                         }
                                     }
+                                    .highlight{
+                                        ul{
+                                            row-gap:0.5rem;
+                                            margin:0.75rem 0px 1rem;
+
+                                            li{
+                                                min-height:0px;
+                                                list-style:disc;
+                                                margin:0px 0px 0px 1rem;
+                                                padding:0px 0px 0px 0.35rem;
+
+                                                &::marker{
+                                                    color:$blue;
+                                                }
+                                            }
+
+                                            & + p{
+                                                margin-top:1.5rem;
+                                            }
+                                        }
+                                    }
                                 }
                                 .background{
                                     .image{
                                         background-image:url('../img/background_middle--blue.webp');
+                                    }
+                                }
+                            }
+
+                            .decision_roadmap{
+                                .container{
+                                    .carousel{
+                                        .slider{
+                                            .flickity-button{
+                                                border-color:$darkblue;
+                                                &::before,
+                                                &::after{
+                                                    background-color:$darkblue;
+                                                }
+                                                &:hover{
+                                                    background-color:$darkblue;
+                                                    &::before,
+                                                    &::after{
+                                                        background-color:$white;
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -1480,12 +1746,13 @@
                 }
 
                 .section--DecisionRoadmap{
-
                     .container{
-                        display:grid;
+                        display:none;
                         grid-template-columns:$single_column;
                         grid-auto-rows:min-content;
                         @include addElementSpace(row-gap);
+
+                        &.jsPhase
 
                         .section_intro{
                             text-align:left;
@@ -1632,6 +1899,11 @@
                                     margin:0px 0px 0.5rem;
                                 }
                             }
+                        }
+
+                        &.jsActive{
+
+                            display:grid;
                         }
                     }
                 }

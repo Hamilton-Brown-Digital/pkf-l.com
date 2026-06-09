@@ -143,11 +143,11 @@
 
 		// Get URL has and show selected element
 		var urlHash = window.location.hash;
-		if(urlHash == '#phase-1' || urlHash == '#phase-2' || urlHash == '#phase-3'){
-			urlHash = urlHash.replace('#','');
+		if(urlHash === '#phase-1' || urlHash === '#phase-2' || urlHash === '#phase-3'){
+			cleanHash = urlHash.replace('#','');
 
 			// Get the data-phase-id from the relevant showPhase button
-			phaseID = $('.showPhase[href="#' + urlHash + '"]').attr('data-phase-id');
+			phaseID = $('.showPhase[href="#' + cleanHash + '"]').attr('data-phase-id');
 
 			// Show correct element
 			$('.phaseElem').removeClass('jsPhaseActive');
@@ -156,9 +156,12 @@
 
 			// Scroll to the correct element
 			setTimeout(function(){
-				$('html, body').animate({
-					scrollTop: $('#' + urlHash).offset().top
-				});
+				var target = $('#' + cleanHash);
+				if(target.length){
+					$('html, body').animate({
+						scrollTop: target.offset().top
+					});
+				}
 				// console.log('scrolly: ' + '#' + urlHash);
 			}, 2000);
 		}
@@ -169,34 +172,50 @@
 
 		// Decision Roadmap
 		var flickityCarouselElem = document.querySelectorAll('.flickityCarousel');
-		if(flickityCarouselElem.length){
-			flickityCarouselElem.forEach(function(el, index, list){
-				// console.log(el);
-				// console.log(index);
+		if (flickityCarouselElem.length) {
 
-				// Create Carousel
+			// Resize Flickity when it enters the viewport
+			var observerOptions = {
+				root: null, // use the viewport
+				rootMargin: '0px',
+				threshold: 0.05 // trigger as soon as 5% of the carousel is visible
+			};
+			var observer = new IntersectionObserver(function(entries, observer) {
+				entries.forEach(function(entry) {
+					if (entry.isIntersecting) {
+						var flkty = Flickity.data(entry.target);
+						if (flkty) {
+							flkty.resize();
+							// console.log('Flickity refreshed on viewport entry!');
+						}
+					}
+				});
+			}, observerOptions);
+
+
+			flickityCarouselElem.forEach(function(el) {
+
+				// Setup flickity
 				var flickityCarousel = new Flickity(el, {
 					draggable: '>1',
 					groupCells: true,
 					wrapAround: false,
 					autoPlay: false,
 					adaptiveHeight: false,
-					groupCells: true,
-
 					cellSelector: '.slide',
-
 					cellAlign: 'left',
 					contain: false,
 					percentPosition: true,
-
-					fade:true,
-
+					fade: true,
 					pageDots: false,
 					prevNextButtons: true,
-					arrowShape: 'M0,50L40.5,9.5l6.7,6.7l-30,30H100v9.4H18.9l28.2,28.2l-6.7,6.7L0,50z',
+					arrowShape: '',
 				});
 
-				// Resize flickity after load to account for sizing errors on load
+				// Tell the observer to watch this specific carousel element
+				observer.observe(el);
+
+				// Resize fallback just in case
 				setTimeout(function(){
 					flickityCarousel.resize();
 				}, 1000);
@@ -441,50 +460,4 @@
 			}
 		}
 		fnScrollMagicContactUs();
-
-
-		// Parallax Images
-		function fnScrollMagicParallaxImage(){
-			if( $('.parallaxImage').length ){
-				$('.parallaxImage').each(function(i) {
-
-					var heightWindow = $(window).height();
-					var heightElement = $(this).outerHeight(true);
-					var targetElement = $(this).find('img');
-					triggerHook = $(this).attr('data-trigger');
-					if(!triggerHook){
-						triggerHook = '1.0';
-					}
-					triggerOffset = $(this).attr('data-offset');
-					if(!triggerOffset){
-						triggerOffset = 0;
-					}
-					scrollSpeed = $(this).attr('data-speed');
-					if(!scrollSpeed){
-						calculatedScrollSpeed = '-150%';
-					}
-                    else{
-                        calculatedScrollSpeed = scrollSpeed * -100 + '%';
-                    }
-
-					var scene = new ScrollMagic.Scene({
-						triggerElement: this,
-						// duration: (heightWindow / scrollSpeed) + heightElement,
-						duration: heightWindow + heightElement,
-						// duration: heightWindow / scrollSpeed,
-						triggerHook: triggerHook,
-						offset:triggerOffset,
-						reverse: true
-					})
-					.setTween(targetElement, {y: calculatedScrollSpeed, ease: Linear.easeOut})
-					.addTo(ScrollMagicController)
-					// .addIndicators({
-					// 	name: 'parallax ' + $(this).attr('id')
-					// })
-				});
-
-			}
-		}
-		fnScrollMagicParallaxImage();
-
 	});
