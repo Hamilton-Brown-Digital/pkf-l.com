@@ -106,8 +106,6 @@
 
         .section--WhoIsItFor{
             .container{
-                @include jsAnimate_FadeIn;
-
                 // Blur other tiles when you hover a tile button
                 .tiles{
                     .tile{
@@ -125,6 +123,16 @@
                 }
 
                 .background{
+                }
+
+                .section_intro{
+                    p{
+                        @include jsAnimate_FadeIn;
+                    }
+                }
+
+                .section_outro{
+                    @include jsAnimate_FadeIn;
                 }
             }
         }

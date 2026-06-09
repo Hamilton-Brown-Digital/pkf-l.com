@@ -322,12 +322,63 @@
 					var backgroundElem = contentContainer.find('.background');
 					var heightContainer = contentContainer.outerHeight(true);
 
+
+
+					var whoisitforTile01Elem = contentContainer.find('.whoisitforTile01');
+					var whoisitforTile02Elem = contentContainer.find('.whoisitforTile02');
+					var whoisitforTile03Elem = contentContainer.find('.whoisitforTile03');
+
+
+					whoisitforTile01Elem.attr('style', 'filter:blur(50px); opacity:1.0; transform:translateX(-30vw) translateY(-40vh) scale(1.5);');
+					whoisitforTile02Elem.attr('style', 'filter:blur(50px); opacity:1.0; transform:translateX(25vw) translateY(30vh) scale(1.5);');
+					whoisitforTile03Elem.attr('style', 'filter:blur(50px); opacity:1.0; transform:translateX(30vw) translateY(-30vh) scale(1.5);');
+
+					// Tile01
+					var scene = new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:100,
+						offset:0,
+						duration:heightContainer * 0.9,
+					})
+					.setTween(whoisitforTile01Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'fnScrollMagicWhoIsItFor'
+					// })
+
+					// Tile02
+					var scene = new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:100,
+						offset:0,
+						duration:heightContainer * 0.9,
+					})
+					.setTween(whoisitforTile02Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'fnScrollMagicWhoIsItFor'
+					// })
+
+					// Tile03
+					var scene = new ScrollMagic.Scene({
+						triggerElement: this,
+						triggerHook:100,
+						offset:0,
+						duration:heightContainer * 0.9,
+					})
+					.setTween(whoisitforTile03Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
+					.addTo(ScrollMagicController)
+					// .addIndicators({
+					// 	name: 'fnScrollMagicWhoIsItFor'
+					// })
+
+
 					// Background
 					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:100,
 						offset:0,
-						duration:heightContainer * 1.5,
+						duration:heightContainer * 2,
 					})
 					.setTween(backgroundElem, {rotation: 20})
 					.addTo(ScrollMagicController)
@@ -336,6 +387,8 @@
 					// })
 				});
 			}
+
+
 		}
 		fnScrollMagicWhoIsItFor();
 

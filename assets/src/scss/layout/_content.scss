@@ -368,55 +368,73 @@
 
                             margin:1rem 0px;
 
-                            .tile{
+                            .tile_holder{
+                                width:100%;
+                                height:100%;
+
                                 display:grid;
-                                z-index:10;
+                                position:relative;
 
-                                grid-template-rows:min-content auto min-content;
-                                grid-auto-rows:min-content;
+                                align-items:stretch;
 
-                                h3{
-                                    min-height:3em;
 
-                                    &::before{
-                                        display:block;
+                                .tile{
+                                    display:grid;
+                                    z-index:10;
 
-                                        color:$black;
-                                        font-size:$fontsizeNormal;
-                                        font-weight:$fontweightRegular;
-                                    }
-                                }
-                                &:nth-child(1){
+                                    grid-template-rows:min-content auto min-content;
+                                    grid-auto-rows:min-content;
+
                                     h3{
-                                        color:$purple;
+                                        min-height:3em;
+
                                         &::before{
-                                            content:'Phase one';
+                                            display:block;
+
+                                            color:$black;
+                                            font-size:$fontsizeNormal;
+                                            font-weight:$fontweightRegular;
                                         }
                                     }
-                                    a{
-                                        @include btn($purple, $white);
+                                }
+
+                                &:nth-child(1){
+                                    .tile{
+                                        h3{
+                                            color:$purple;
+                                            &::before{
+                                                content:'Phase one';
+                                            }
+                                        }
+                                        a{
+                                            @include btn($purple, $white);
+                                        }
                                     }
                                 }
                                 &:nth-child(2){
-                                    h3{
-                                        color:$pink;
-                                        &::before{
-                                            content:'Phase two';
+                                    .tile{
+                                        h3{
+                                            color:$pink;
+                                            &::before{
+                                                content:'Phase two';
+                                            }
                                         }
-                                    }
-                                    a{
-                                        @include btn($pink, $white);
+                                        a{
+                                            @include btn($pink, $white);
+                                        }
                                     }
                                 }
                                 &:nth-child(3){
-                                    h3{
-                                        color:$darkblue;
-                                        &::before{
-                                            content:'Phase three';
+                                    .tile{
+                                        h3{
+                                            color:$darkblue;
+                                            &::before{
+                                                content:'Phase three';
+                                            }
                                         }
-                                    }
-                                    a{
-                                        @include btn($darkblue, $white);
+                                        a{
+                                            @include btn($darkblue, $white);
+                                        }
                                     }
                                 }
                             }
