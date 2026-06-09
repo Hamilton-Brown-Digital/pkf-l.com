@@ -342,6 +342,7 @@
 		// Phase
 		function fnScrollMagicPhase(){
 
+			// Parallax Background
 			if( $('.jsPhaseActive .phaseElemBackground').length ){
 				$('.jsPhaseActive .phaseElemBackground').each(function(i) {
 					var contentContainer = $(this);
@@ -365,6 +366,7 @@
 				});
 			}
 
+			// Parallax Shapes
 			if( $('.jsPhaseActive .phaseShape01').length ){
 				$('.jsPhaseActive .phaseShape01').each(function(i) {
 					var contentContainer = $(this);
@@ -386,7 +388,6 @@
             		arrScrollMagicResetScenes.push(scene); // Push each scene into the array for resets
 				});
 			}
-
 			if( $('.jsPhaseActive .phaseShape02').length ){
 				$('.jsPhaseActive .phaseShape02').each(function(i) {
 					var contentContainer = $(this);
@@ -408,7 +409,6 @@
             		arrScrollMagicResetScenes.push(scene); // Push each scene into the array for resets
 				});
 			}
-
 			if( $('.jsPhaseActive .phaseShape03').length ){
 				$('.jsPhaseActive .phaseShape03').each(function(i) {
 					var contentContainer = $(this);
@@ -430,6 +430,31 @@
             		arrScrollMagicResetScenes.push(scene); // Push each scene into the array for resets
 				});
 			}
+
+			// Pin Title
+			/* if( $('.pinnedTitle').length ){
+				var contentContainer = $('.pinnedTitle');
+				var pinnedElem = contentContainer.find('.pinnedElem');
+				var pinnedTrigger = contentContainer.find('.pinnedTrigger');
+				var pinnedDuration = contentContainer.find('.pinnedDuration');
+				var pinnedElemHeight = pinnedElem.outerHeight(true);
+				var pinnedDurationHeight = pinnedDuration.outerHeight(true);
+
+				console.log('pinnedElemHeight: ' + pinnedElemHeight);
+				console.log('pinnedDurationHeight: ' + pinnedDurationHeight);
+
+				var scene = new ScrollMagic.Scene({
+					triggerElement: '.pinnedTrigger',
+					duration:pinnedDurationHeight - pinnedElemHeight,
+					triggerHook:0.5,
+				})
+				.setPin('.pinnedElem', {pushFollowers: false})
+				.setClassToggle('.pinnedTitle', 'jsPinned')
+				.addTo(ScrollMagicController)
+				.addIndicators({
+					name: 'pinnedTitle'
+				})
+			} */
 		}
 		fnScrollMagicPhase();
 

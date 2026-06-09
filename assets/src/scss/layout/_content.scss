@@ -300,7 +300,7 @@
 
                     .container{
                         max-width:$medium_container;
-                        min-height:calc(100vh - 100px);
+                        min-height:100vh;
 
                         display:grid;
                         align-items:center;
@@ -327,17 +327,22 @@
                 }
 
                 .section--WhoIsItFor{
+                    min-height:100vh;
+                    display:grid;
                     z-index:20;
+
+                    align-items:center;
+                    justify-items:center;
+
                     .container{
                         max-width:$medium_container;
-                        min-height:calc(100vh - 100px);
 
                         display:grid;
                         grid-template-columns:$single_column;
                         grid-auto-rows:min-content;
                         @include addElementSpace(row-gap);
 
-                        padding-top:50vh;
+                        // padding-top:50vh;
                         // padding-bottom:50vh;
 
                         .section_intro,
@@ -476,6 +481,9 @@
                             position:relative;
                             overflow:visible;
 
+                            @include addSectionSpace(padding-top);
+                            @include addSectionSpace(padding-bottom);
+
                             .container{
                                 min-height:calc(100vh - 100px);
 
@@ -483,8 +491,8 @@
                                 align-items:center;
                                 justify-items:center;
 
-                                padding-top:200px;
-                                padding-bottom:200px;
+                                @include addSectionSpace(padding-top);
+                                @include addSectionSpace(padding-bottom);
 
                                 position:relative;
                                 z-index:20;
@@ -501,47 +509,65 @@
                                     position:relative;
                                     z-index:30;
 
-                                    h2{
-                                        @include fontTitleLarge;
-                                        font-weight:$fontweightBold;
+                                    .text_title{
+
+                                        h2{
+                                            position:relative;
+                                            z-index:20;
+                                            @include fontTitleLarge;
+                                            font-weight:$fontweightBold;
+                                        }
+
+                                        &::before,
+                                        &::after{
+                                            width:clamp(560px, 180%, 812px);
+                                            height:0px;
+
+                                            display:block;
+                                            position:absolute;
+                                            top:50%;
+                                            left:50%;
+
+                                            margin:0px;
+                                            // padding:0px 0px clamp(640px, 180%, 767.35px);
+                                            padding:0px 0px clamp(560px, 180%, 812px);
+                                            border:0px none;
+
+                                            border-radius:50%;
+
+                                            transform:translate(-50%, -50%);
+
+                                            content:'';
+                                        }
+
+                                        &::before{
+                                            background-position:center;
+                                            background-repeat:no-repeat;
+                                            background-size:cover;
+
+                                            z-index:10;
+
+                                            opacity:0.5;
+                                        }
+                                        &::after{
+                                            backdrop-filter:blur(15px);
+                                            background-color:rgba(255, 255, 255, 0.25 );
+                                            z-index:0;
+                                        }
                                     }
                                 }
 
-                                &::before,
-                                &::after{
-                                    width:clamp(560px, 180%, 812px);
-                                    height:0px;
+                                .trigger{
+                                    width:100%;
+                                    height:1px;
 
                                     display:block;
+                                    display:none;
                                     position:absolute;
                                     top:50%;
-                                    left:50%;
-                                    z-index:20;
+                                    left:0px;
 
-                                    margin:0px;
-                                    // padding:0px 0px clamp(640px, 180%, 767.35px);
-                                    padding:0px 0px clamp(560px, 180%, 812px);
-                                    border:0px none;
-
-                                    border-radius:50%;
-
-                                    transform:translate(-50%, -50%);
-
-                                    content:'';
-                                }
-
-                                &::before{
-                                    background-position:center;
-                                    background-repeat:no-repeat;
-                                    background-size:cover;
-
-                                    z-index:25;
-
-                                    opacity:0.5;
-                                }
-                                &::after{
-                                    backdrop-filter:blur(15px);
-                                    background-color:rgba(255, 255, 255, 0.25 );
+                                    background:red;
                                 }
                             }
 
@@ -578,17 +604,47 @@
                                     }
                                 }
                             }
+
+                            .duration{
+                                background:green;
+
+                                width:10px;
+                                height:100%;
+
+                                display:block;
+                                display:none;
+                                position:relative;
+                                top:0px;
+                                left:0px;
+                                z-index:100;
+
+                                // padding-bottom:100vh;
+                                // box-sizing:content-box;
+                            }
+
+                            height:auto;
+                            display:grid;
+                            .container,
+                            .duration{
+                                grid-column:1;
+                                grid-row:1;
+                                align-self:start;
+                                justify-self:stretch;
+
+                                position:relative;
+                                top:auto;
+                                left:auto;
+                            }
                         }
 
                         .at_a_glance{
                             position:relative;
                             z-index:30;
 
-                            @include removeSectionSpace(margin-top);
-
                             text-align:center;
 
-                            @include addSectionSpace(padding-bottom);
+                            @include addSectionSpace(padding-top);
+                            // @include addSectionSpace(padding-bottom);
 
                             .container{
                                 display:grid;
@@ -1239,8 +1295,10 @@
 
                             .title{
                                 .container{
-                                    &::before{
-                                        background-image:url('../img/circle_phase--purple.webp');
+                                    .text{
+                                        &::before{
+                                            background-image:url('../img/circle_phase--purple.webp');
+                                        }
                                     }
                                 }
                                 .background{
@@ -1325,8 +1383,10 @@
 
                             .title{
                                 .container{
-                                    &::before{
-                                        background-image:url('../img/circle_phase--pink.webp');
+                                    .text{
+                                        &::before{
+                                            background-image:url('../img/circle_phase--pink.webp');
+                                        }
                                     }
                                 }
                                 .background{
@@ -1403,8 +1463,10 @@
 
                             .title{
                                 .container{
-                                    &::before{
-                                        background-image:url('../img/circle_phase--blue.webp');
+                                    .text{
+                                        &::before{
+                                            background-image:url('../img/circle_phase--blue.webp');
+                                        }
                                     }
                                 }
                                 .background{

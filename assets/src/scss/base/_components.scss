@@ -13,6 +13,7 @@
 
         display:block;
         position:relative;
+        position:absolute;
         top:-150px;
         @include responsive_from(1024px){
             top:0px;
