@@ -162,8 +162,6 @@
                         display:grid;
                         align-items:center;
                         justify-items:center;
-                        padding-top:200px;
-                        padding-bottom:200px;
 
                         .hero{
                             display:grid;
@@ -185,13 +183,24 @@
                                 @include responsive_from($xs_screen){
                                     margin:2rem 0px 0px;
                                 }
+                                @include responsive_to($sm_screen){
+                                    font-size:clamp(3.58em,17.4vw, 4.5em);
+                                }
+                                @media screen and (max-height:$sm_screen){
+                                    font-size:3rem;
+                                    br{
+                                        display:none;
+                                    }
+                                }
                             }
 
                             p{
                                 color:$white;
-                                font-size:$fontsizeLarge;
-                                @include responsive_from($xs_screen){
-                                    font-size:calc($fontsizeVeryLarge * 1.15);
+                                @media screen and (min-height:$sm_screen){
+                                    font-size:$fontsizeLarge;
+                                    @include responsive_from($sm_screen){
+                                        font-size:calc($fontsizeVeryLarge * 1.15);
+                                    }
                                 }
                                 margin:0px;
 
@@ -204,14 +213,25 @@
                                         display:none;
                                     }
                                 }
+                                @media screen and (max-height:$sm_screen){
+                                    br{
+                                        display:none;
+                                    }
+                                }
 
                                 .btn{
                                     @include btn($darkblue, $white);
-                                    font-size:$fontsizeNormal;
-                                    margin-top:20px;
-                                    @include responsive_from($xs_screen){
-                                        font-size:$fontsizeLarge;
-                                        margin-top:40px;
+                                    @media screen and (min-height:$sm_screen){
+                                        margin-top:20px;
+                                        @include responsive_from($sm_screen){
+                                            margin-top:40px;
+                                        }
+                                        @media screen and (min-height:$sm_screen){
+                                            font-size:$fontsizeNormal;
+                                            @include responsive_from($sm_screen){
+                                                font-size:$fontsizeLarge;
+                                            }
+                                        }
                                     }
                                 }
                             }

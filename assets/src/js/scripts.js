@@ -308,9 +308,9 @@
 					})
 					.setTween(contentElem, {y: '50%', opacity:0, filter:'blur(40px)', scale:1.2, ease: 'power2.in'})
 					.addTo(ScrollMagicController)
-					// .addIndicators({
-					// 	name: 'fnScrollMagicHeroFade'
-					// })
+					.addIndicators({
+						name: 'fnScrollMagicHeroFade'
+					})
 				});
 			}
 		}
@@ -393,7 +393,10 @@
 
 
 		}
-		fnScrollMagicWhoIsItFor();
+		if( $(window).width() >= 1280){
+			fnScrollMagicWhoIsItFor();
+			console.log('1280');
+		}
 
 		// Phase
 		function fnScrollMagicPhase(){
