@@ -5,7 +5,7 @@
 /* -- Navigation
 --------------------------------- */
 
-#customLandingPage_AccountingSystemsCampaign{
+// #customLandingPage_AccountingSystemsCampaign{
 
     .customLandingPage_modal{
         width:100vw;
@@ -46,7 +46,7 @@
             grid-auto-rows:min-content;
             row-gap:1.5rem;
 
-            margin:0px auto;
+            margin:0px auto !important;
 
             .close{
                 align-self:start;
@@ -183,4 +183,4 @@
             display:grid;
         }
     }
-}
+// }

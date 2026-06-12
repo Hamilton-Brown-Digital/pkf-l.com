@@ -10,10 +10,10 @@
         min-width:320px;
 
 
-        &.jsModalActive{
-            height: 100%;
-            overflow-y: hidden;
-        }
+        // &.jsModalActive{
+        //     height: 100%;
+        //     overflow-y: hidden;
+        // }
 
         @include responsive_to($menu_breakpoint){
             &.jsMenuActive{

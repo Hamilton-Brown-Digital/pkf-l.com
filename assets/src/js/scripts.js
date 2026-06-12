@@ -294,9 +294,9 @@
 		function fnScrollMagicHeroFade(){
 			if( $('.heroContent').length ){
 				$('.heroContent').each(function(i) {
-					var contentContainer = $(this);
-					var contentElem = contentContainer.find('.hero');
-					var heightContainer = contentContainer.outerHeight(true);
+					var contentSection = $(this);
+					var contentElem = contentSection.find('.hero');
+					var heightSection = contentSection.outerHeight(true);
 
 					contentElem.attr('style', 'filter:blur(0px)');
 
@@ -304,89 +304,142 @@
 						triggerElement: this,
 						triggerHook:0,
 						offset:-heightHeader,
-						duration:heightContainer - heightHeader,
+						duration:heightSection - heightHeader,
 					})
 					.setTween(contentElem, {y: '50%', opacity:0, filter:'blur(40px)', scale:1.2, ease: 'power2.in'})
 					.addTo(ScrollMagicController)
-					.addIndicators({
-						name: 'fnScrollMagicHeroFade'
-					})
+					// .addIndicators({
+					// 	name: 'fnScrollMagicHeroFade'
+					// })
 				});
 			}
 		}
 		fnScrollMagicHeroFade();
 
 		// Who Is It For?
-		function fnScrollMagicWhoIsItFor(){
+		function fnScrollMagicWhereDoesYourBusinessSit(){
 
-			if( $('.whoisitforContent').length ){
-				$('.whoisitforContent').each(function(i) {
-					var contentContainer = $(this);
-					var backgroundElem = contentContainer.find('.background');
-					var heightContainer = contentContainer.outerHeight(true);
+			if( $('.WhereDoesYourBusinessSitContent').length ){
+				$('.WhereDoesYourBusinessSitContent').each(function(i) {
+					var contentSection = $(this);
+
+					var animationDuration = contentSection.find('.animationDuration');
+
+					var backgroundElem = contentSection.find('.background');
+					var containerElem = contentSection.find('.container');
+					var pinnedTitle = contentSection.find('.pinnedTitle');
+					var pinnedText = contentSection.find('.pinnedText');
+					var WhereDoesYourBusinessSitTile01Elem = contentSection.find('.WhereDoesYourBusinessSitTile01');
+					var WhereDoesYourBusinessSitTile02Elem = contentSection.find('.WhereDoesYourBusinessSitTile02');
+					var WhereDoesYourBusinessSitTile03Elem = contentSection.find('.WhereDoesYourBusinessSitTile03');
+
+					var heightSection = contentSection.outerHeight(true);
+					var animationDurationHeight = animationDuration.outerHeight(true);
+					var containerElemHeight = containerElem.outerHeight(true);
+
+					if(containerElemHeight <= (heightViewport - heightHeader)){
+
+						WhereDoesYourBusinessSitTile01Elem.attr('style', 'filter:blur(50px); opacity:0; transform:translateX(-30vw) translateY(-80vh) scale(1.5);');
+						WhereDoesYourBusinessSitTile02Elem.attr('style', 'filter:blur(50px); opacity:0; transform:translateX(20vw) translateY(-10vh) scale(1.5);');
+						WhereDoesYourBusinessSitTile03Elem.attr('style', 'filter:blur(50px); opacity:0; transform:translateX(30vw) translateY(-70vh) scale(1.5);');
+
+						pinnedTitle.attr('style', 'transform:scale(2); filter:blur(10px); opacity:0;');
+						pinnedText.attr('style', 'opacity:0;');
 
 
+						// Title
+						var scene = new ScrollMagic.Scene({
+							triggerElement: this,
+							offset:animationDurationHeight / 8,
+							duration:animationDurationHeight / 4,
+							triggerHook:0.75,
+						})
+						// .setClassToggle('.pinnedTitle', 'jsPinned')
+						.setTween(pinnedTitle, {opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeInOut})
+						.addTo(ScrollMagicController)
+						// .addIndicators({
+						// 	name: 'title'
+						// })
 
-					var whoisitforTile01Elem = contentContainer.find('.whoisitforTile01');
-					var whoisitforTile02Elem = contentContainer.find('.whoisitforTile02');
-					var whoisitforTile03Elem = contentContainer.find('.whoisitforTile03');
 
+						// Text
+						var scene = new ScrollMagic.Scene({
+							triggerElement: this,
+							offset:animationDurationHeight / 16,
+							duration:animationDurationHeight / 16,
+							triggerHook:0.3,
+						})
+						// .setClassToggle('.pinnedText', 'jsAnimate')
+						.setTween(pinnedText, {opacity:1.0, ease: Linear.easeInOut})
+						.addTo(ScrollMagicController)
+						// .addIndicators({
+						// 	name: 'text'
+						// })
 
-					whoisitforTile01Elem.attr('style', 'filter:blur(50px); opacity:1.0; transform:translateX(-30vw) translateY(-40vh) scale(1.5);');
-					whoisitforTile02Elem.attr('style', 'filter:blur(50px); opacity:1.0; transform:translateX(25vw) translateY(30vh) scale(1.5);');
-					whoisitforTile03Elem.attr('style', 'filter:blur(50px); opacity:1.0; transform:translateX(30vw) translateY(-30vh) scale(1.5);');
+						// Tile01
+						var scene = new ScrollMagic.Scene({
+							triggerElement: this,
+							offset:animationDurationHeight / 8,
+							duration:animationDurationHeight / 4,
+							triggerHook:0.75,
+						})
+						.setTween(WhereDoesYourBusinessSitTile01Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeInOut})
+						.addTo(ScrollMagicController)
+						// .addIndicators({
+						// 	name: 'tile01'
+						// })
 
-					// Tile01
-					var scene = new ScrollMagic.Scene({
-						triggerElement: this,
-						triggerHook:100,
-						offset:0,
-						duration:heightContainer * 0.9,
-					})
-					.setTween(whoisitforTile01Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
-					.addTo(ScrollMagicController)
-					// .addIndicators({
-					// 	name: 'fnScrollMagicWhoIsItFor'
-					// })
+						// Tile02
+						var scene = new ScrollMagic.Scene({
+							triggerElement: this,
+							offset:animationDurationHeight / 8,
+							duration:animationDurationHeight / 4,
+							triggerHook:0.75,
+						})
+						.setTween(WhereDoesYourBusinessSitTile02Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
+						.addTo(ScrollMagicController)
+						// .addIndicators({
+						// 	name: 'fnScrollMagicWhereDoesYourBusinessSit'
+						// })
 
-					// Tile02
-					var scene = new ScrollMagic.Scene({
-						triggerElement: this,
-						triggerHook:100,
-						offset:0,
-						duration:heightContainer * 0.9,
-					})
-					.setTween(whoisitforTile02Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
-					.addTo(ScrollMagicController)
-					// .addIndicators({
-					// 	name: 'fnScrollMagicWhoIsItFor'
-					// })
+						// Tile03
+						var scene = new ScrollMagic.Scene({
+							triggerElement: this,
+							offset:animationDurationHeight / 8,
+							duration:animationDurationHeight / 4,
+							triggerHook:0.75,
+						})
+						.setTween(WhereDoesYourBusinessSitTile03Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
+						.addTo(ScrollMagicController)
+						// .addIndicators({
+						// 	name: 'fnScrollMagicWhereDoesYourBusinessSit'
+						// })
 
-					// Tile03
-					var scene = new ScrollMagic.Scene({
-						triggerElement: this,
-						triggerHook:100,
-						offset:0,
-						duration:heightContainer * 0.9,
-					})
-					.setTween(whoisitforTile03Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
-					.addTo(ScrollMagicController)
-					// .addIndicators({
-					// 	name: 'fnScrollMagicWhoIsItFor'
-					// })
-
+						// Pin Container
+						var scene = new ScrollMagic.Scene({
+							triggerElement: this,
+							triggerHook:0,
+							offset:0,
+							duration:animationDurationHeight / 2,
+						})
+						.setPin('.pinnedContainer', {pushFollowers: false})
+						.addTo(ScrollMagicController)
+						// .addIndicators({
+						// 	name: 'pin'
+						// })
+					}
 
 					// Background
 					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:100,
 						offset:0,
-						duration:heightContainer * 2,
+						duration:animationDurationHeight * 1.5,
 					})
 					.setTween(backgroundElem, {rotation: 20})
 					.addTo(ScrollMagicController)
 					// .addIndicators({
-					// 	name: 'fnScrollMagicWhoIsItFor'
+					// 	name: 'bg'
 					// })
 				});
 			}
@@ -394,7 +447,7 @@
 
 		}
 		if( $(window).width() >= 1280){
-			fnScrollMagicWhoIsItFor();
+			fnScrollMagicWhereDoesYourBusinessSit();
 			console.log('1280');
 		}
 
@@ -404,9 +457,9 @@
 			// Parallax Background
 			if( $('.jsPhaseActive .phaseElemBackground').length ){
 				$('.jsPhaseActive .phaseElemBackground').each(function(i) {
-					var contentContainer = $(this);
-					var backgroundElem = contentContainer.find('.image');
-					var heightContainer = contentContainer.outerHeight(true);
+					var contentSection = $(this);
+					var backgroundElem = contentSection.find('.image');
+					var heightSection = contentSection.outerHeight(true);
 
 					// Title: Background
 					var scene = new ScrollMagic.Scene({
@@ -428,16 +481,16 @@
 			// Parallax Shapes
 			if( $('.jsPhaseActive .phaseShape01').length ){
 				$('.jsPhaseActive .phaseShape01').each(function(i) {
-					var contentContainer = $(this);
-					var backgroundElem = contentContainer.find('.image');
-					var heightContainer = contentContainer.outerHeight(true);
+					var contentSection = $(this);
+					var backgroundElem = contentSection.find('.image');
+					var heightSection = contentSection.outerHeight(true);
 
 					// Title: Background
 					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:1.0,
 						offset:0,
-						duration:heightViewport + (heightContainer * 2),
+						duration:heightViewport + (heightSection * 2),
 					})
 					.setTween(backgroundElem, {y:'-50%', ease: Linear.easeOut})
 					.addTo(ScrollMagicController)
@@ -449,16 +502,16 @@
 			}
 			if( $('.jsPhaseActive .phaseShape02').length ){
 				$('.jsPhaseActive .phaseShape02').each(function(i) {
-					var contentContainer = $(this);
-					var backgroundElem = contentContainer.find('.image');
-					var heightContainer = contentContainer.outerHeight(true);
+					var contentSection = $(this);
+					var backgroundElem = contentSection.find('.image');
+					var heightSection = contentSection.outerHeight(true);
 
 					// Title: Background
 					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:1.0,
 						offset:0,
-						duration:heightViewport + (heightContainer * 2),
+						duration:heightViewport + (heightSection * 2),
 					})
 					.setTween(backgroundElem, {y:'25%', ease: Linear.easeOut})
 					.addTo(ScrollMagicController)
@@ -470,16 +523,16 @@
 			}
 			if( $('.jsPhaseActive .phaseShape03').length ){
 				$('.jsPhaseActive .phaseShape03').each(function(i) {
-					var contentContainer = $(this);
-					var backgroundElem = contentContainer.find('.image');
-					var heightContainer = contentContainer.outerHeight(true);
+					var contentSection = $(this);
+					var backgroundElem = contentSection.find('.image');
+					var heightSection = contentSection.outerHeight(true);
 
 					// Title: Background
 					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:1.0,
 						offset:0,
-						duration:heightViewport + (heightContainer * 2),
+						duration:heightViewport + (heightSection * 2),
 					})
 					.setTween(backgroundElem, {y:'85%', ease: Linear.easeOut})
 					.addTo(ScrollMagicController)
@@ -492,10 +545,10 @@
 
 			// Pin Title
 			/* if( $('.pinnedTitle').length ){
-				var contentContainer = $('.pinnedTitle');
-				var pinnedElem = contentContainer.find('.pinnedElem');
-				var pinnedTrigger = contentContainer.find('.pinnedTrigger');
-				var pinnedDuration = contentContainer.find('.pinnedDuration');
+				var contentSection = $('.pinnedTitle');
+				var pinnedElem = contentSection.find('.pinnedElem');
+				var pinnedTrigger = contentSection.find('.pinnedTrigger');
+				var pinnedDuration = contentSection.find('.pinnedDuration');
 				var pinnedElemHeight = pinnedElem.outerHeight(true);
 				var pinnedDurationHeight = pinnedDuration.outerHeight(true);
 
@@ -522,9 +575,9 @@
 
 			if( $('.contactusContent').length ){
 				$('.contactusContent').each(function(i) {
-					var contentContainer = $(this);
-					var backgroundElem = contentContainer.find('.background span');
-					var heightContainer = contentContainer.outerHeight(true);
+					var contentSection = $(this);
+					var backgroundElem = contentSection.find('.background span');
+					var heightSection = contentSection.outerHeight(true);
 
 					backgroundElem.attr('style', 'bottom:-5%;');
 
@@ -532,8 +585,8 @@
 					var scene = new ScrollMagic.Scene({
 						triggerElement: this,
 						triggerHook:0,
-						offset:-heightContainer,
-						duration:heightContainer * 2,
+						offset:-heightSection,
+						duration:heightSection * 2,
 					})
 					.setTween(backgroundElem, {y:'-20%', ease: Linear.easeOut})
 					.addTo(ScrollMagicController)

@@ -25,7 +25,7 @@
 
 #customLandingPage_AccountingSystemsCampaign{
     opacity:0;
-    animation:cssAnimateBlurIn 1000ms ease-in-out forwards;
+    animation:cssAnimateFadeIn 1000ms ease-in-out forwards;
     animation-delay:$transitionSpeed;
 
 
@@ -104,7 +104,7 @@
             }
         }
 
-        .section--WhoIsItFor{
+        .section--WhereDoesYourBusinessSit{
             .container{
                 // Blur other tiles when you hover a tile button
                 .tiles{
@@ -113,26 +113,18 @@
                         filter: blur(0px);
                         transform:scale(1.0);
                     }
-                    &:has(.btn:hover) .tile {
+                    &:has(a:hover) .tile {
                         filter: blur(10px);
                     }
-                    & .tile:has(.btn:hover) {
+                    & .tile:has(a:hover) {
                         filter: blur(0px);
                         transform:scale(1.025);
                     }
                 }
 
-                .background{
-                }
-
-                .section_intro{
-                    p{
-                        @include jsAnimate_FadeIn;
-                    }
-                }
-
+                .section_intro,
                 .section_outro{
-                    @include jsAnimate_FadeIn;
+                    // @include transition(calc($transitionSpeed * 1), $transitionEaseInOut, opacity);
                 }
             }
         }
