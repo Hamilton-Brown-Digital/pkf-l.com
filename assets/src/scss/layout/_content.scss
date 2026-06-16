@@ -2389,6 +2389,7 @@
 
                                 @include responsive_from($xl_screen){
                                     grid-template-columns:3fr 4fr;
+                                    column-gap:$gutterGap;
                                 }
 
                                 margin:0px;
@@ -2428,7 +2429,7 @@
                                 }
 
                                 p{
-                                    margin:0.5rem 0px !important;
+                                    margin:1rem 0px 0.5rem !important;
                                 }
                             }
                         }
