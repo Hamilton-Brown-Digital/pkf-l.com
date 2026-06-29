@@ -448,7 +448,7 @@
 		}
 		if( $(window).width() >= 1280){
 			fnScrollMagicWhereDoesYourBusinessSit();
-			console.log('1280');
+			// console.log('1280');
 		}
 
 		// Phase

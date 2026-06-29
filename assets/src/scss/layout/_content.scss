@@ -454,7 +454,9 @@
                                     &:nth-child(1){
                                         .tile{
                                             h3{
-                                                color:$purple;
+                                                a{
+                                                    color:$purple !important;
+                                                }
                                                 &::before{
                                                     content:'Phase one';
                                                 }
@@ -467,7 +469,9 @@
                                     &:nth-child(2){
                                         .tile{
                                             h3{
-                                                color:$pink;
+                                                a{
+                                                    color:$pink !important;
+                                                }
                                                 &::before{
                                                     content:'Phase two';
                                                 }
@@ -480,7 +484,9 @@
                                     &:nth-child(3){
                                         .tile{
                                             h3{
-                                                color:$darkblue;
+                                                a{
+                                                    color:$darkblue !important;
+                                                }
                                                 &::before{
                                                     content:'Phase three';
                                                 }
@@ -2526,7 +2532,7 @@
                                         position:relative;
                                         z-index:10;
 
-                                        border-radius:20px;
+                                        // border-radius:20px;
 
                                         overflow:hidden;
 
