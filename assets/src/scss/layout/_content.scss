@@ -347,7 +347,8 @@
                 }
 
                 .section--WhereDoesYourBusinessSit{
-                    min-height:200vh;
+                    // -- Pin not working in Edge, removed for now --
+                    // min-height:200vh;
 
                     .duration{
                         width:10px;

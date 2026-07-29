@@ -352,7 +352,8 @@
 							triggerElement: this,
 							offset:animationDurationHeight / 8,
 							duration:animationDurationHeight / 4,
-							triggerHook:0.75,
+							// triggerHook:0.75,
+							triggerHook:0.45, // Adjustment for Edge issue
 						})
 						// .setClassToggle('.pinnedTitle', 'jsPinned')
 						.setTween(pinnedTitle, {opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeInOut})
@@ -381,7 +382,8 @@
 							triggerElement: this,
 							offset:animationDurationHeight / 8,
 							duration:animationDurationHeight / 4,
-							triggerHook:0.75,
+							// triggerHook:0.75,
+							triggerHook:0.45, // Adjustment for Edge issue
 						})
 						.setTween(WhereDoesYourBusinessSitTile01Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeInOut})
 						.addTo(ScrollMagicController)
@@ -394,7 +396,8 @@
 							triggerElement: this,
 							offset:animationDurationHeight / 8,
 							duration:animationDurationHeight / 4,
-							triggerHook:0.75,
+							// triggerHook:0.75,
+							triggerHook:0.45, // Adjustment for Edge issue
 						})
 						.setTween(WhereDoesYourBusinessSitTile02Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
 						.addTo(ScrollMagicController)
@@ -407,7 +410,8 @@
 							triggerElement: this,
 							offset:animationDurationHeight / 8,
 							duration:animationDurationHeight / 4,
-							triggerHook:0.75,
+							// triggerHook:0.75,
+							triggerHook:0.45, // Adjustment for Edge issue
 						})
 						.setTween(WhereDoesYourBusinessSitTile03Elem, {x: '0%', y: '0%', opacity:1.0, filter:'blur(0px)', scale:1.0, ease: Linear.easeOut})
 						.addTo(ScrollMagicController)
@@ -416,14 +420,15 @@
 						// })
 
 						// Pin Container
-						var scene = new ScrollMagic.Scene({
-							triggerElement: this,
-							triggerHook:0,
-							offset:0,
-							duration:animationDurationHeight / 2,
-						})
-						.setPin('.pinnedContainer', {pushFollowers: false})
-						.addTo(ScrollMagicController)
+						// -- Pin not working in Edge, removed for now --
+						// var scene = new ScrollMagic.Scene({
+						// 	triggerElement: this,
+						// 	triggerHook:0,
+						// 	offset:0,
+						// 	duration:animationDurationHeight / 2,
+						// })
+						// .setPin('.pinnedContainer', {pushFollowers: false})
+						// .addTo(ScrollMagicController)
 						// .addIndicators({
 						// 	name: 'pin'
 						// })
